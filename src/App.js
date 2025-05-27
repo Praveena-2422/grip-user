@@ -97,6 +97,7 @@ import AccessDeniedPage from "./pages/AccessDeniedPage";
 import MaintenancePage from "./pages/MaintenancePage";
 import BlankPagePage from "./pages/BlankPagePage";
 import ConnectionsPage from "./pages/ConnectionsPage";
+import CrosschapterPage from "./pages/CrosschapterPage";
 
 function App() {
   return (
@@ -105,6 +106,7 @@ function App() {
       <Routes>
         <Route exact path='/' element={<HomePageOne />} />
         <Route exact path='/connections' element={<ConnectionsPage />} />
+         <Route exact path='/cross-chapter' element={<CrosschapterPage />} />
 
 
 

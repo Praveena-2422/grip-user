@@ -2,7 +2,7 @@ import { Icon } from '@iconify/react/dist/iconify.js';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const ConnectionsLayer = () => {
+const CrosschapterLayer = () => {
 
     const members = [
         {
@@ -125,7 +125,7 @@ const ConnectionsLayer = () => {
                     </div>
 
                 </div>
-                <div className="card-body p-24">
+                <div className="card-body mt-50 p-24">
 
                     <div className="row gy-4">
                         <div className="col-xxl-12">
@@ -135,7 +135,7 @@ const ConnectionsLayer = () => {
 
                                 {/* Right Stats */}
                                 <div className='col-md-10'>
-                                    <div className="row g-4">
+                                    <div className="row g-3">
                                         {members.map((member, index) => (
                                             <div className="col-sm-6 col-md-4 col-lg-4" key={index}>
                                                 <div className="card p-3 bg-grey d-flex flex-row align-items-center gap-3 radius-16 shadow-sm h-100">
@@ -168,4 +168,4 @@ const ConnectionsLayer = () => {
     );
 };
 
-export default ConnectionsLayer;
+export default CrosschapterLayer;

@@ -1619,11 +1619,12 @@ th {
 }
 
 .bg-danger-100 {
-  background-color: var(--danger-100) !important;
+    background-color: #fee2e278 !important;
+
 }
 
 .bg-danger-200 {
-  background-color: var(--danger-200) !important;
+  background-color: #922e2d !important;
 }
 
 .bg-danger-300 {
@@ -3545,7 +3546,7 @@ html[data-theme="dark"] .bg-light-pink {
 }
 
 .bg-gradient-blue-warning {
-  background: linear-gradient(90deg, #cbfff9 0%, #ffeeb1 100%);
+  background: linear-gradient(135deg, rgb(192, 34, 33), rgb(69, 68, 66));
 }
 
 .aspect-ratio-1 {
@@ -6971,7 +6972,7 @@ h6,
 }
 
 .border-danger-400 {
-  border-color: var(--danger-400) !important;
+  border-color: #a92827 !important;
 }
 
 .border-danger-500 {
@@ -15183,7 +15184,8 @@ td.fc-header-center {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
-    background: #fee2e2;
+    background: #fff1f1;
+    box-shadow: 0 0.25rem 1.875rem rgb(87 63 61 / 20%);
 }
 
 /* === trail card end === */
@@ -15239,7 +15241,7 @@ td.fc-header-center {
 /* === navbar css start === */
 .navbar-header {
     height: 7rem;
-    background-color: var(--white);
+    background-color: #fee2e2;
     position: sticky;
     top: 0;
     padding: 25px 25px;
@@ -15752,4 +15754,47 @@ img.header-logo-img {
 
 .bg-grey {
     background: #f5f6fa;
+}
+
+
+.mr-10{
+  margin-right: 10px;
+}
+
+.border-grip {
+    border: 1px solid #b62524 !important;
+}
+
+.form-select:active,
+.form-select:focus
+{
+    border: 1px solid #b62524 !important;
+
+}
+
+.bg-success-grip{
+
+  background-color: #b62524 ;
+
+}
+
+.text-grip {
+    color: #b62524;
+}
+
+.btn-primary-black {
+  background-color: #111;
+}
+
+.card.bg-danger-100.h-100.p-0 {
+    box-shadow: 0 0.25rem 1.875rem rgb(87 63 61 / 20%);
+}
+
+thead.table-danger.grip {
+  background: #b62524  !important;
+}
+
+.reportdetailss {
+    overflow-y: scroll;
+    max-height: 500px;
 }

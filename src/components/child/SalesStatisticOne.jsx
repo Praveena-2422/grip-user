@@ -3,26 +3,120 @@ import { Icon } from '@iconify/react/dist/iconify.js';
 import ReactApexChart from 'react-apexcharts';
 import useReactApexChart from '../../hook/useReactApexChart';
 import { Link } from "react-router-dom";
-import { Modal } from 'react-bootstrap';
+import { Modal } from "bootstrap";
+import { useNavigate } from 'react-router-dom';
 
 
 
 
 const SalesStatisticOne = () => {
 
+    const navigate = useNavigate();
 
+    const handleCrossChapterClick = () => {
+        const modalEl = document.getElementById('exampleModalTwo');
+        const modalInstance = Modal.getInstance(modalEl) || new Modal(modalEl);
+        modalInstance.hide(); // hides the modal
+        document.body.classList.remove("modal-open"); // cleanup class
+        document.querySelector('.modal-backdrop')?.remove(); // remove backdrop
+
+        setTimeout(() => {
+            navigate("/cross-chapter");
+        }, 300); // Delay to allow modal hide animation
+    };
 
 
     let { donutChartSeriesTwo, donutChartOptionsTwo } = useReactApexChart()
     let { lineDataLabelSeries, lineDataLabelOptions } = useReactApexChart()
 
-    let { createChart } = useReactApexChart()
+
 
 
 
     return (
         <>
+            <div className="card h-100 p-0 radius-12">
+                <div className="card-header border-bottom bg-base py-16 px-24 d-flex align-items-center flex-wrap gap-3 justify-content-between">
+                    <div className="d-flex align-items-center flex-wrap gap-3">
+                        <h6 class="fw-semibold mb-0">Hello, Vignesh</h6>
 
+
+
+                    </div>
+
+                    <div className="d-flex align-items-center flex-wrap gap-2">
+                        <form className="navbar-search position-relative" style={{ width: '200px', height: '50px' }}>
+                            <input
+                                type="text"
+                                name="search"
+                                className="form-control bg-white border-grip rounded-2 text-sm px-3 pe-5 h-100 w-100"
+                                placeholder="Search..."
+                                style={{
+                                    lineHeight: '1.2',
+                                }}
+                            />
+                            <Icon
+                                icon="ion:search-outline"
+                                className="position-absolute text-grip"
+                                style={{
+                                    right: '12px',
+                                    top: '50%',
+                                    transform: 'translateY(-50%)',
+                                    fontSize: '20px',
+                                }}
+                            />
+                        </form>
+
+                        <Link
+                            to=""
+                            className="btn text-white bg-gradient-blue-warning text-sm btn-sm d-flex align-items-center justify-content-center gap-2 text-center"
+                            style={{
+                                width: '200px',
+                                height: '50px',
+                                borderRadius: '8px',
+                                padding: '12px',
+                                whiteSpace: 'normal', // allows wrapping
+                                lineHeight: '1.2',
+                            }}
+                        >
+                            Millionaries
+                        </Link>
+
+                        <Link
+                            to=""
+                            className="btn text-white bg-gradient-blue-warning text-sm btn-sm d-flex align-items-center justify-content-center gap-2 text-center"
+                            style={{
+                                width: '200px',
+                                height: '50px',
+                                borderRadius: '8px',
+                                padding: '12px',
+                                whiteSpace: 'normal',
+                                lineHeight: '1.2',
+                            }}
+                        >
+                            Renewal Due Date:<br />
+                            01/05/2026
+                        </Link>
+
+                        <Link
+                            to=""
+                            className="btn text-white bg-gradient-blue-warning text-sm btn-sm d-flex align-items-center justify-content-center gap-2 text-center"
+                            style={{
+                                width: '200px',
+                                height: '50px',
+                                borderRadius: '8px',
+                                padding: '12px',
+                                whiteSpace: 'normal',
+                                lineHeight: '1.2',
+                            }}
+                        >
+                            Regional Website
+                        </Link>
+                    </div>
+
+                </div>
+
+            </div>
 
 
 
@@ -31,7 +125,7 @@ const SalesStatisticOne = () => {
                     <div className="card-body">
                         <div className="d-flex align-items-center flex-wrap gap-2 justify-content-between mb-20">
                             <h6 className="mb-2 fw-bold text-lg mb-0">Referrals Given</h6>
-                            <select className="form-select form-select-sm w-30 bg-base border text-secondary-light" defaultValue="Today">
+                            <select className="form-select form-select-sm w-auto bg-base border-grip text-secondary-light" defaultValue="Today">
                                 <option value="Today">Last 6 Months</option>
                                 <option value="Weekly">Last 12 Months</option>
                                 <option value="Monthly">Lifetime</option>
@@ -56,7 +150,7 @@ const SalesStatisticOne = () => {
                             </div> */}
 
                             <div className="col-md-4">
-                                <div className="card h-100 p-0">
+                                <div className="card bg-danger-100 h-100 p-0">
 
                                     <div className="card-body p-24">
                                         <ReactApexChart id="lineDataLabel" options={lineDataLabelOptions} series={lineDataLabelSeries} type="line"
@@ -74,21 +168,21 @@ const SalesStatisticOne = () => {
                                             <div className="carbody p20">
                                                 <div className="row g-3">
                                                     <div className="col-md-12">
-                                                        <div className="card p-3 shadow-2 radius-8 h-100 gradient-deep-two-1 border border-white">
+                                                        <div className="card p-3 shadow-2 radius-8 h-100 bg-gradient-blue-warning border border-white">
                                                             <div className="card-body p-10">
                                                                 <div className="align-items-center justify-content-between gap-1 mb-3">
                                                                     <div className=" align-items-center">
-                                                                        <span className="mb-10 w-48-px h-48-px bg-cyan-600 flex-shrink-0 text-white d-flex justify-content-center align-items-center rounded-circle h6 mb-0">
+                                                                        <span className="mb-10 w-48-px h-48-px btn-primary-black flex-shrink-0 text-white d-flex justify-content-center align-items-center rounded-circle h6 mb-0">
                                                                             <img
                                                                                 src="assets/images/home-eleven/icons/home-eleven-icon1.svg"
                                                                                 alt=""
                                                                             />
                                                                         </span>
                                                                         <div>
-                                                                            <span className="fw-medium text-secondary-light text-md">
+                                                                            <span className="fw-medium text-white text-md">
                                                                                 Revenue Received To My Business
                                                                             </span>
-                                                                            <h6 className="fw-semibold mt-2">₹50,000</h6>
+                                                                            <h6 className="fw-semibold mt-2 text-white">₹50,000</h6>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -102,13 +196,13 @@ const SalesStatisticOne = () => {
                                                                 <div className="d-flex align-items-center flex-wrap mt-10 gap-8">
                                                                     <Link
                                                                         to="#"
-                                                                        className="btn rounded-pill border text-neutral-500 border-neutral-500 radius-8 px-12 py-6 bg-hover-neutral-500 text-hover-white flex-grow-1"
+                                                                        className="btn rounded-pill  border text-white border-white radius-8 px-12 py-6 bg-hover-neutral-500 text-hover-white flex-grow-1"
                                                                     >
                                                                         Submit
                                                                     </Link>
                                                                     <Link
                                                                         to="#"
-                                                                        className="btn rounded-pill btn-primary-600 radius-8 px-12 py-6 flex-grow-1"
+                                                                        className="btn rounded-pill btn-primary-black text-white radius-8 px-12 py-6 flex-grow-1"
                                                                     >
                                                                         Review
                                                                     </Link>
@@ -124,19 +218,19 @@ const SalesStatisticOne = () => {
 
                                                                 <Link
                                                                     to="#"
-                                                                    className="btn py-8 mb-3 rounded-pill w-100 bg-gradient-blue-warning text-sm"
+                                                                    className="btn py-10 mb-3 text-white rounded-pill w-100 bg-gradient-blue-warning text-sm"
                                                                 >
                                                                     Print Your Weekly Slips
                                                                 </Link>
                                                                 <Link
                                                                     to="#"
-                                                                    className="btn py-8 mb-3 rounded-pill w-100 bg-gradient-blue-warning text-sm"
+                                                                    className="btn py-10 mb-3 text-white rounded-pill w-100 bg-gradient-blue-warning text-sm"
                                                                 >
                                                                     Received Referrals Report
                                                                 </Link>
                                                                 <Link
                                                                     to="#"
-                                                                    className="btn py-8 rounded-pill w-100 bg-gradient-blue-warning text-sm"
+                                                                    className="btn py-10 text-white rounded-pill w-100 bg-gradient-blue-warning text-sm"
                                                                 >
                                                                     My Personal Participation Report
                                                                 </Link>
@@ -152,8 +246,9 @@ const SalesStatisticOne = () => {
                                     <div className='col-md-8'>
                                         <div className='row g-3'>
                                             <div className='col-sm-4 col-xs-4'>
-                                                <div className='radius-8 h-100 text-center p-20 bg-purple-light'>
-                                                    <span className='w-44-px h-44-px radius-8 d-inline-flex justify-content-center align-items-center text-xl mb-12 bg-lilac-200 border border-lilac-400 text-lilac-600'>
+                                                <div className='radius-8 h-100 text-center p-20 bg-danger-100'>
+                                                    <span className='w-44-px h-44-px radius-8 d-inline-flex justify-content-center align-items-center text-xl mb-12  border border-danger-400 text-black'>
+
                                                         <i className='ri-price-tag-3-fill' />
                                                     </span>
                                                     <span className='text-neutral-700 d-block'>
@@ -163,7 +258,8 @@ const SalesStatisticOne = () => {
                                                     <div className="d-flex align-items-center flex-wrap mt-12 gap-8">
                                                         <Link
                                                             to="#"
-                                                            className="btn rounded-pill border text-neutral-500 border-neutral-500 radius-8 px-12 py-6 bg-hover-neutral-500 text-hover-white flex-grow-1"
+                                                            className="btn rounded-pill border btn-primary-black text-white border-neutral-500 radius-8 px-12 py-6 bg-hover-neutral-500 text-hover-white flex-grow-1"
+
                                                         >
                                                             Submit
                                                         </Link>
@@ -173,8 +269,9 @@ const SalesStatisticOne = () => {
 
                                             </div>
                                             <div className='col-sm-4 col-xs-4'>
-                                                <div className='radius-8 h-100 text-center p-20 bg-success-100'>
-                                                    <span className='w-44-px h-44-px radius-8 d-inline-flex justify-content-center align-items-center text-xl mb-12 bg-success-200 border border-success-400 text-success-600'>
+                                                <div className='radius-8 h-100 text-center p-20 bg-danger-100'>
+                                                    <span className='w-44-px h-44-px radius-8 d-inline-flex justify-content-center align-items-center text-xl mb-12  border border-danger-400 text-black'>
+
                                                         <i className='ri-shopping-cart-2-fill' />
                                                     </span>
                                                     <span className='text-neutral-700 d-block'>
@@ -184,7 +281,7 @@ const SalesStatisticOne = () => {
                                                     <div className="d-flex align-items-center flex-wrap mt-12 gap-8">
                                                         <Link
                                                             to="#"
-                                                            className="btn rounded-pill border text-neutral-500 border-neutral-500 radius-8 px-12 py-6 bg-hover-neutral-500 text-hover-white flex-grow-1"
+                                                            className="btn rounded-pill border btn-primary-black text-white border-neutral-500 radius-8 px-12 py-6 bg-hover-neutral-500 text-hover-white flex-grow-1"
 
                                                             data-bs-toggle="modal"
                                                             data-bs-target="#exampleModalTwo"
@@ -193,7 +290,10 @@ const SalesStatisticOne = () => {
                                                         </Link>
                                                         <Link
                                                             to="#"
-                                                            className="btn rounded-pill btn-primary-600 radius-8 px-12 py-6 flex-grow-1"
+                                                            className="btn rounded-pill bg-gradient-blue-warning text-white radius-8 px-12 py-6 flex-grow-1"
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#referralgivenReportModal"
+
                                                         >
                                                             Review
                                                         </Link>
@@ -201,9 +301,10 @@ const SalesStatisticOne = () => {
                                                 </div>
                                             </div>
                                             <div className='col-sm-4 col-xs-4'>
-                                                <div className='radius-8 h-100 text-center p-20 bg-info-focus cursor-pointer' data-bs-toggle="modal"
+                                                <div className='radius-8 h-100 text-center p-20 bg-danger-100 cursor-pointer' data-bs-toggle="modal"
                                                     data-bs-target="#exampleModalOne">
-                                                    <span className='w-44-px h-44-px radius-8 d-inline-flex justify-content-center align-items-center text-xl mb-12 bg-info-200 border border-info-400 text-info-600'>
+                                                    <span className='w-44-px h-44-px radius-8 d-inline-flex justify-content-center align-items-center text-xl mb-12  border border-danger-400 text-black'>
+
                                                         <i className='ri-group-3-fill' />
                                                     </span>
                                                     <span className='text-neutral-700 d-block'>TYFCB Given</span>
@@ -213,7 +314,8 @@ const SalesStatisticOne = () => {
                                             </div>
                                             <div className='col-sm-4 col-xs-4'>
                                                 <div className='radius-8 h-100 text-center p-20 bg-danger-100'>
-                                                    <span className='w-44-px h-44-px radius-8 d-inline-flex justify-content-center align-items-center text-xl mb-12 bg-danger-200 border border-danger-400 text-danger-600'>
+                                                    <span className='w-44-px h-44-px radius-8 d-inline-flex justify-content-center align-items-center text-xl mb-12  border border-danger-400 text-black'>
+
                                                         <i className='ri-refund-2-line' />
                                                     </span>
                                                     <span className='text-neutral-700 d-block'>Visitor</span>
@@ -221,7 +323,9 @@ const SalesStatisticOne = () => {
                                                     <div className="d-flex align-items-center flex-wrap mt-12 gap-8">
                                                         <Link
                                                             to="#"
-                                                            className="btn rounded-pill border text-neutral-500 border-neutral-500 radius-8 px-12 py-6 bg-hover-neutral-500 text-hover-white flex-grow-1"
+                                                            className="btn rounded-pill border btn-primary-black text-white border-neutral-500 radius-8 px-12 py-6 bg-hover-neutral-500 text-hover-white flex-grow-1"
+
+
                                                         >
                                                             Submit
                                                         </Link>
@@ -231,7 +335,8 @@ const SalesStatisticOne = () => {
                                             </div>
                                             <div className='col-sm-4 col-xs-4'>
                                                 <div className='radius-8 h-100 text-center p-20 bg-danger-100'>
-                                                    <span className='w-44-px h-44-px radius-8 d-inline-flex justify-content-center align-items-center text-xl mb-12 bg-danger-200 border border-danger-400 text-danger-600'>
+                                                    <span className='w-44-px h-44-px radius-8 d-inline-flex justify-content-center align-items-center text-xl mb-12  border border-danger-400 text-black'>
+
                                                         <i className='ri-refund-2-line' />
                                                     </span>
                                                     <span className='text-neutral-700 d-block'>CEUs</span>
@@ -239,13 +344,14 @@ const SalesStatisticOne = () => {
                                                     <div className="d-flex align-items-center flex-wrap mt-12 gap-8">
                                                         <Link
                                                             to="#"
-                                                            className="btn rounded-pill border text-neutral-500 border-neutral-500 radius-8 px-12 py-6 bg-hover-neutral-500 text-hover-white flex-grow-1"
+                                                            className="btn rounded-pill border btn-primary-black text-white border-neutral-500 radius-8 px-12 py-6 bg-hover-neutral-500 text-hover-white flex-grow-1"
+
                                                         >
                                                             Submit
                                                         </Link>
                                                         <Link
                                                             to="#"
-                                                            className="btn rounded-pill btn-primary-600 radius-8 px-12 py-6 flex-grow-1"
+                                                            className="btn rounded-pill bg-gradient-blue-warning text-white radius-8 px-12 py-6 flex-grow-1"
                                                         >
                                                             Review
                                                         </Link>
@@ -254,7 +360,8 @@ const SalesStatisticOne = () => {
                                             </div>
                                             <div className='col-sm-4 col-xs-4'>
                                                 <div className='radius-8 h-100 text-center p-20 bg-danger-100'>
-                                                    <span className='w-44-px h-44-px radius-8 d-inline-flex justify-content-center align-items-center text-xl mb-12 bg-danger-200 border border-danger-400 text-danger-600'>
+                                                    <span className='w-44-px h-44-px radius-8 d-inline-flex justify-content-center align-items-center text-xl mb-12  border border-danger-400 text-black'>
+
                                                         <i className='ri-refund-2-line' />
                                                     </span>
                                                     <span className='text-neutral-700 d-block'>One-to-Ones</span>
@@ -262,7 +369,8 @@ const SalesStatisticOne = () => {
                                                     <div className="d-flex align-items-center flex-wrap mt-12 gap-8">
                                                         <Link
                                                             to="#"
-                                                            className="btn rounded-pill border text-neutral-500 border-neutral-500 radius-8 px-12 py-6 bg-hover-neutral-500 text-hover-white flex-grow-1"
+                                                            className="btn rounded-pill border btn-primary-black text-white border-neutral-500 radius-8 px-12 py-6 bg-hover-neutral-500 text-hover-white flex-grow-1"
+
                                                             data-bs-toggle="modal"
                                                             data-bs-target="#exampleModal"
                                                         >
@@ -270,7 +378,7 @@ const SalesStatisticOne = () => {
                                                         </Link>
                                                         <Link
                                                             to="#"
-                                                            className="btn rounded-pill btn-primary-600 radius-8 px-12 py-6 flex-grow-1 cursor-pointer"
+                                                            className="btn rounded-pill bg-gradient-blue-warning text-white radius-8 px-12 py-6 flex-grow-1 cursor-pointer"
                                                             data-bs-toggle="modal"
                                                             data-bs-target="#oneToOneReportModal"
 
@@ -306,7 +414,7 @@ const SalesStatisticOne = () => {
                             <div className="">
                                 <Link
                                     to="#"
-                                    className="text-primary-600 hover-text-primary d-flex align-items-center gap-1"
+                                    className="text-grip hover-text-primary d-flex align-items-center gap-1"
                                 >
                                     Update
                                     <Icon
@@ -325,7 +433,7 @@ const SalesStatisticOne = () => {
 
                             <ul className="flex-shrink-0">
                                 <li className="d-flex align-items-center gap-2 mb-28">
-                                    <span className="w-12-px h-12-px rounded-circle bg-success-main" />
+                                    <span className="w-12-px h-12-px rounded-circle bg-success-grip" />
                                     <span className="text-secondary-light text-sm fw-medium">
                                         Complete your My Bio by Filling Tops Profile
                                     </span>
@@ -345,7 +453,7 @@ const SalesStatisticOne = () => {
                             <h6 className="mb-2 fw-bold text-xl mb-0">Upcoming Meeting and Events</h6>
                             <Link
                                 to="#"
-                                className="text-primary-600 hover-text-primary d-flex align-items-center gap-1"
+                                className="text-grip hover-text-primary d-flex align-items-center gap-1"
                             >
                                 View All
                                 <Icon
@@ -356,7 +464,7 @@ const SalesStatisticOne = () => {
                         </div>
                         <div className="row gy-4">
                             <div className="col-lg-4">
-                                <div className="h-100 border p-16 pe-0 radius-8">
+                                <div className="h-100 border bg-danger-100 p-16 pe-0 radius-8">
                                     <div className="max-h-266-px overflow-y-auto scroll-sm pe-16">
                                         <div className="d-flex align-items-center justify-content-between gap-3 mb-12 pb-2">
                                             <div >
@@ -374,7 +482,7 @@ const SalesStatisticOne = () => {
                                 </div>
                             </div>
                             <div className="col-lg-4">
-                                <div className="h-100 border p-16 pe-0 radius-8">
+                                <div className="h-100 border bg-danger-100 p-16 pe-0 radius-8">
                                     <div className="max-h-266-px overflow-y-auto scroll-sm pe-16">
                                         <div className="d-flex align-items-center justify-content-between gap-3 mb-12 pb-2">
                                             <div >
@@ -392,7 +500,7 @@ const SalesStatisticOne = () => {
                                 </div>
                             </div>
                             <div className="col-lg-4">
-                                <div className="h-100 border p-16 pe-0 radius-8">
+                                <div className="h-100 border bg-danger-100 p-16 pe-0 radius-8">
                                     <div className="max-h-266-px overflow-y-auto scroll-sm pe-16">
                                         <div className="d-flex align-items-center justify-content-between gap-3 mb-12 pb-2">
                                             <div >
@@ -624,7 +732,7 @@ const SalesStatisticOne = () => {
                                     </div>
                                     <div className="col-sm-1 text-center">OR</div>
                                     <div className="col-sm-4">
-                                        <button type="button" className="btn btn-primary grip w-100">
+                                        <button type="button" className="btn btn-primary grip w-100" >
                                             Search Cross Chapter
                                         </button>
                                     </div>
@@ -857,7 +965,7 @@ const SalesStatisticOne = () => {
                                     </div>
                                     <div className="col-sm-1 text-center">OR</div>
                                     <div className="col-sm-4">
-                                        <button type="button" className="btn btn-primary grip w-100">
+                                        <button type="button" className="btn btn-primary grip w-100" onClick={handleCrossChapterClick}>
                                             Search Cross Chapter
                                         </button>
                                     </div>
@@ -1138,7 +1246,8 @@ const SalesStatisticOne = () => {
                                     </div>
                                     <div className="col-sm-1 text-center">OR</div>
                                     <div className="col-sm-4">
-                                        <button type="button" className="btn btn-primary grip w-100">
+
+                                        <button type="button" className="btn btn-primary grip w-100" >
                                             Search Cross Chapter
                                         </button>
                                     </div>
@@ -1358,7 +1467,7 @@ const SalesStatisticOne = () => {
                 aria-labelledby="oneToOneReportModalLabel"
                 aria-hidden="true"
             >
-                <div class="modal-dialog modal-xl modal-dialog-centered">
+                <div class="modal-dialog modal-xl modal-dialog-centered" >
                     <div class="modal-content radius-16 bg-base">
 
                         <div class="modal-header py-16 px-24 border border-top-0 border-start-0 border-end-0">
@@ -1371,7 +1480,7 @@ const SalesStatisticOne = () => {
 
                         <div class="modal-body">
 
-                            <div class="d-flex align-items-end gap-3 mb-4">
+                            <div class="d-flex align-items-end gap-3 mb-3">
                                 <div>
                                     <label class="form-label">Start Date <span class="text-danger">*</span></label>
                                     <input type="date" class="form-control" value="2025-05-01" />
@@ -1380,92 +1489,361 @@ const SalesStatisticOne = () => {
                                     <label class="form-label">End Date <span class="text-danger">*</span></label>
                                     <input type="date" class="form-control" value="2025-05-31" />
                                 </div>
-                                <button class="btn btn-danger">Go</button>
+                                <button class="btn btn-primary grip">Go</button>
                             </div>
 
 
-                            <div class="bg-light p-3 rounded mb-3 d-flex justify-content-between align-items-center">
-                                <div>
-                                    <strong>Chapter : One to One Report</strong><br />
-                                    <small>Running User: John Doe</small><br />
-                                    <small>Run At: 26/05/2025, 11:00 AM</small><br />
-                                    <small>Chapter: <strong>Chennai North</strong></small>
+                            <div className='reportdetailss overflow-x-auto'>
+
+                                <div class="bg-danger-100 p-3 rounded d-flex justify-content-between align-items-center mb-3">
+                                    <div>
+                                        <div><strong>Chapter : One to One Report</strong></div>
+                                        <div class="d-flex gap-5 mt-2">
+                                            <small>Running User<br></br><strong>Vignesh.Veerasamy</strong></small>
+                                            <small>Run At<br></br><strong>23-May-2025 5:01 PM</strong></small>
+                                            <small>Chapter<br></br><strong>Millionaires</strong></small>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex gap-2">
+                                        <button class="btn btn-primary grip text-xs btn-sm">Edit / Delete Slips</button>
+                                        <button class="btn btn-primary grip text-xs btn-sm">Export without Headers</button>
+                                        <button class="btn btn-primary grip text-xs btn-sm">Export</button>
+                                        <button class="btn btn-primary grip text-xs btn-sm">Print</button>
+                                    </div>
                                 </div>
-                                <div class="d-flex gap-2">
-                                    <button class="btn btn-danger btn-sm">Edit / Delete Slips</button>
-                                    <button class="btn btn-danger btn-sm">Export without Headers</button>
-                                    <button class="btn btn-danger btn-sm">Export</button>
-                                    <button class="btn btn-danger btn-sm">Print</button>
+
+
+
+
+                                <div class=" rounded p-3 mb-3 bg-danger-100">
+                                    <div className='text-sm'> <strong>Parameters</strong></div>
+                                    <div class="row mt-2 border-bottom">
+                                        <div class="col"><small><strong>Start Date</strong></small></div>
+                                        <div class="col"> <small><strong>23/11/2024</strong></small></div>
+                                    </div>
+                                    <div class="row  border-bottom">
+                                        <div class="col"><small><strong>End Date</strong></small></div>
+                                        <div class="col"><small><strong>31/05/2025</strong></small></div>
+                                    </div>
                                 </div>
-                            </div>
 
 
-                            <div class="border rounded p-2 mb-3 bg-white">
-                                <strong>Parameters</strong>
-                                <div class="row mt-2">
-                                    <div class="col"><strong>Start Date:</strong> 01/05/2025</div>
-                                    <div class="col"><strong>End Date:</strong> 31/05/2025</div>
+                                <div class="alert alert-warning text-center text-black fw-bold small mb-3">
+                                    Slips associated with PALMS reports that have not been submitted can be edited.
+                                    If the slip you want to edit has a status of completed, please contact your Vice President to have them unlock the report for you...
                                 </div>
+
+
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-striped">
+                                        <thead class="table-danger grip">
+                                            <tr class='text-xs'>
+                                                <th>Date</th>
+                                                <th>Met with</th>
+                                                <th>Initiated by</th>
+                                                <th>Location</th>
+                                                <th>Topics</th>
+                                                <th>PALMS Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class='text-xs'>
+                                                <td>27/11/24</td>
+                                                <td>Saravana kumaran ASV</td>
+                                                <td>Saravana kumaran ASV</td>
+                                                <td>My office</td>
+                                                <td>Future plans</td>
+                                                <td>Completed</td>
+                                            </tr>
+                                            <tr class='text-xs'>
+                                                <td>30/01/25</td>
+                                                <td>Nareshkumar K M</td>
+                                                <td>Nareshkumar K M</td>
+                                                <td>In office</td>
+                                                <td>Regarding project planning</td>
+                                                <td>Completed</td>
+                                            </tr>
+
+                                            <tr class='text-xs'>
+                                                <td>14/02/25</td>
+                                                <td>Deepika Sabapathi</td>
+                                                <td>Vignesh .Veerasamy</td>
+                                                <td>Her office</td>
+                                                <td>121 one important Explain its benefits. To Deepika</td>
+                                                <td>Completed</td>
+                                            </tr>
+
+                                            <tr class='text-xs'>
+                                                <td>14/02/25</td>
+                                                <td>Nareshkumar K M</td>
+                                                <td>Vignesh .Veerasamy</td>
+                                                <td>Ambattur site</td>
+                                                <td>Residence Construction</td>
+                                                <td>Completed</td>
+                                            </tr>
+                                            <tr class='text-xs'>
+                                                <td>21/02/25</td>
+                                                <td>Nareshkumar K M</td>
+                                                <td>Vignesh .Veerasamy</td>
+                                                <td>Fourspaces office</td>
+                                                <td>Ongoing work related</td>
+                                                <td>Completed</td>
+                                            </tr>
+                                            <tr class='text-xs'>
+                                                <td>04/03/25</td>
+                                                <td>Rajendra Babu S</td>
+                                                <td>Rajendra Babu S</td>
+                                                <td>At his Office</td>
+                                                <td>Completely Discussed about both our Business and understood. Passed Referrals.</td>
+                                                <td>Completed</td>
+                                            </tr>
+
+                                            <tr class='text-xs'>
+                                                <td>11/03/25</td>
+                                                <td>Deepika Sabapathi</td>
+                                                <td>Deepika Sabapathi</td>
+                                                <td>In site</td>
+                                                <td>Discuss Regarding site repairs</td>
+                                                <td>Completed</td>
+                                            </tr>
+                                            <tr class='text-xs'>
+                                                <td>11/03/25</td>
+                                                <td>Nareshkumar K M</td>
+                                                <td>Nareshkumar K M</td>
+                                                <td>Site meet</td>
+                                                <td>Site development</td>
+                                                <td>Completed</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
                             </div>
 
-
-                            <div class="alert alert-warning small mb-4">
-                                Slips associated with PALMS reports that have not been submitted can be edited.
-                                If the slip you want to edit has a status of completed, please contact your Vice President to have them unlock the report for you...
-                            </div>
-
-
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-striped">
-                                    <thead class="table-danger">
-                                        <tr>
-                                            <th>Date</th>
-                                            <th>Met with</th>
-                                            <th>Initiated by</th>
-                                            <th>Location</th>
-                                            <th>Topics</th>
-                                            <th>PALMS Status</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>03/05/2025</td>
-                                            <td>Arjun Rao</td>
-                                            <td>John Doe</td>
-                                            <td>Zoom Call</td>
-                                            <td>Business Collaboration</td>
-                                            <td>Submitted</td>
-                                        </tr>
-                                        <tr>
-                                            <td>10/05/2025</td>
-                                            <td>Priya Sharma</td>
-                                            <td>John Doe</td>
-                                            <td>Café Coffee Day</td>
-                                            <td>Service Exchange</td>
-                                            <td>Pending</td>
-                                        </tr>
-                                        <tr>
-                                            <td>18/05/2025</td>
-                                            <td>Rahul Singh</td>
-                                            <td>John Doe</td>
-                                            <td>BNI Meeting</td>
-                                            <td>Referral Discussion</td>
-                                            <td>Submitted</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
                         </div>
 
 
                         <div class="modal-footer border-top-0">
-                            <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">
+                            <button type="button" class="btn text-grip btn-outline-grip" data-bs-dismiss="modal">
                                 Close
                             </button>
                         </div>
+
+
                     </div>
                 </div>
             </div>
+
+
+
+
+
+            <div
+                class="modal fade"
+
+                id="referralgivenReportModal"
+                tabindex="-1"
+                aria-labelledby="referralgivenReportModal"
+                aria-hidden="true"
+            >
+                <div class="modal-dialog modal-xl modal-dialog-centered" style={{ maxWidth: "1450px" }}>
+                    <div class="modal-content radius-16 bg-base">
+
+                        <div class="modal-header py-16 px-24 border border-top-0 border-start-0 border-end-0">
+                            <h1 class="modal-title fs-5 text-danger" id="referralgivenReportModal">
+                                Chapter : Referrals Given Report
+                            </h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+
+
+                        <div class="modal-body">
+
+                            <div class="d-flex align-items-end gap-3 mb-3">
+                                <div>
+                                    <label class="form-label">Start Date <span class="text-danger">*</span></label>
+                                    <input type="date" class="form-control" value="2025-05-01" />
+                                </div>
+                                <div>
+                                    <label class="form-label">End Date <span class="text-danger">*</span></label>
+                                    <input type="date" class="form-control" value="2025-05-31" />
+                                </div>
+                                <button class="btn btn-primary grip">Go</button>
+                            </div>
+
+
+                            <div className='reportdetailss overflow-x-auto'>
+
+                                <div class="bg-danger-100 p-3 rounded d-flex justify-content-between align-items-center mb-3">
+                                    <div>
+                                        <div><strong>Chapter : Referrals Given Report</strong></div>
+                                        <div class="d-flex gap-5 mt-2">
+                                            <small>Running User<br></br><strong>Vignesh.Veerasamy</strong></small>
+                                            <small>Run At<br></br><strong>23-May-2025 5:01 PM</strong></small>
+                                            <small>Chapter<br></br><strong>Millionaires</strong></small>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex gap-2">
+                                        <button class="btn btn-primary grip text-xs btn-sm">Edit / Delete Slips</button>
+                                        <button class="btn btn-primary grip text-xs btn-sm">Export without Headers</button>
+                                        <button class="btn btn-primary grip text-xs btn-sm">Export</button>
+                                        <button class="btn btn-primary grip text-xs btn-sm">Print</button>
+                                    </div>
+                                </div>
+
+
+
+
+                                <div class=" rounded p-3 mb-3 bg-danger-100">
+                                    <div className='text-sm'> <strong>Parameters</strong></div>
+                                    <div class="row mt-2 border-bottom">
+                                        <div class="col"><small><strong>Start Date</strong></small></div>
+                                        <div class="col"> <small><strong>23/11/2024</strong></small></div>
+                                    </div>
+                                    <div class="row  border-bottom">
+                                        <div class="col"><small><strong>End Date</strong></small></div>
+                                        <div class="col"><small><strong>31/05/2025</strong></small></div>
+                                    </div>
+                                </div>
+
+
+                                <div class="alert alert-warning text-center text-black fw-bold text-xs mb-3">
+                                    Slips associated with PALMS reports that have not been submitted can be edited.
+                                    If the slip you want to edit has a status of completed, please contact your Vice President to have them unlock the report for you...
+                                </div>
+
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-striped">
+                                        <thead class="table-danger grip">
+                                            <tr class='text-xs'>
+                                                <th>Date</th>
+                                                <th>To</th>
+                                                <th>Referral</th>
+                                                <th>Inside/Outside</th>
+                                                <th>Status</th>
+                                                <th>Phone Number</th>
+                                                <th>Email</th>
+                                                <th>Comments</th>
+                                                <th>Referral Temp</th>
+                                                <th>Tracking Sheet Status</th>
+                                                <th>PALMS Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class='text-xs'>
+                                                <td>24/04/25</td>
+                                                <td>Ferryn Davidson P</td>
+                                                <td>Vanalavanya</td>
+                                                <td>Tier 2 (outside)</td>
+                                                <td>Card Given Call Required</td>
+                                                <td>8300121620</td>
+                                                <td></td>
+                                                <td>Interior materials</td>
+                                                <td>5</td>
+                                                <td>Got The Business</td>
+                                                <td>Completed</td>
+                                            </tr>
+                                            <tr class='text-xs'>
+                                                <td>30/04/25</td>
+                                                <td>S Ganesh Kumar</td>
+                                                <td>Vignesh .Veerasamy</td>
+                                                <td>Tier 1 (inside)</td>
+                                                <td>Card Given Call Required</td>
+                                                <td>+918300101620</td>
+                                                <td>v2fcons@gmail.com</td>
+                                                <td>Car insurance</td>
+                                                <td>5</td>
+                                                <td>Confidential</td>
+                                                <td>Completed</td>
+                                            </tr>
+                                            <tr class='text-xs'>
+                                                <td>01/05/25</td>
+                                                <td>Udaya Kumar Murali</td>
+                                                <td>Mr. Murugan</td>
+                                                <td>Tier 2 (outside)</td>
+                                                <td>Card Given Call Required</td>
+                                                <td>+919840827654</td>
+                                                <td></td>
+                                                <td>Invest sip lumpsum amount</td>
+                                                <td>5</td>
+                                                <td>Not Contacted Yet</td>
+                                                <td>Completed</td>
+                                            </tr>
+                                            <tr class='text-xs'>
+                                                <td>07/05/25</td>
+                                                <td>Ferryn Davidson P</td>
+                                                <td>Vanalavanya</td>
+                                                <td>Tier 2 (outside)</td>
+                                                <td>Card Given Call Required</td>
+                                                <td>8300121620</td>
+                                                <td></td>
+                                                <td>Mica…</td>
+                                                <td>5</td>
+                                                <td>Got The Business</td>
+                                                <td>Completed</td>
+                                            </tr>
+                                            <tr class='text-xs'>
+                                                <td>07/05/25</td>
+                                                <td>Dhivya Anandhan</td>
+                                                <td>Vanalavanya</td>
+                                                <td>Tier 2 (outside)</td>
+                                                <td>Card Given Call Required</td>
+                                                <td>8300121620</td>
+                                                <td></td>
+                                                <td>For company labour travel booking</td>
+                                                <td>5</td>
+                                                <td>Got The Business</td>
+                                                <td>Completed</td>
+                                            </tr>
+                                            <tr class='text-xs'>
+                                                <td>14/05/25</td>
+                                                <td>Raj Kumar</td>
+                                                <td>Vignesh .Veerasamy</td>
+                                                <td>Tier 1 (inside)</td>
+                                                <td>Card Given Call Required</td>
+                                                <td>+918300101620</td>
+                                                <td>v2fcons@gmail.com</td>
+                                                <td>Self business</td>
+                                                <td>5</td>
+                                                <td>Not Contacted Yet</td>
+                                                <td>Completed</td>
+                                            </tr>
+                                            <tr class='text-xs'>
+                                                <td>22/05/25</td>
+                                                <td>Guru A.</td>
+                                                <td>Vignesh .Veerasamy</td>
+                                                <td>Tier 1 (inside)</td>
+                                                <td>Card Given Call Required</td>
+                                                <td>+918300101620</td>
+                                                <td>v2fcons@gmail.com</td>
+                                                <td>Poru materials</td>
+                                                <td>5</td>
+                                                <td>Not Contacted Yet</td>
+                                                <td>Draft</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="modal-footer border-top-0">
+                            <button type="button" class="btn text-grip btn-outline-grip" data-bs-dismiss="modal">
+                                Close
+                            </button>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+
 
 
 

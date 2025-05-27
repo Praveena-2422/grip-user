@@ -1975,7 +1975,7 @@ const useReactApexChart = () => {
 
   let donutChartSeriesTwo = [800, 100];
   let donutChartOptionsTwo = {
-    colors: ["#45B369", "#FF9F29"],
+    colors: ["#a12b2a", "#4e4240"],
 
     legend: {
       show: false,
@@ -3812,7 +3812,7 @@ const useReactApexChart = () => {
 
   let lineDataLabelSeries = [
     {
-      name: "Desktops",
+      name: "Counts",
       data: [5, 25, 35, 15, 21, 15, 35, 35, 51],
     },
   ];
@@ -3828,7 +3828,7 @@ const useReactApexChart = () => {
         show: false,
       },
     },
-    colors: ["#487FFF"], // Set the color of the series
+    colors: ["#a12b2a"], // Set the color of the series
     dataLabels: {
       enabled: true,
     },
@@ -3878,7 +3878,7 @@ const useReactApexChart = () => {
     yaxis: {
       labels: {
         formatter: function (value) {
-          return "$" + value + "k";
+          return "₹" + value + "";
         },
         style: {
           fontSize: "14px",
