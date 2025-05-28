@@ -484,7 +484,7 @@ const handleCrossChapterClick = () => {
                                                 <span>In-Person</span>
 
                                                 <p>May 29, 2025 (7.05am)</p>
-                                                <p>E Hotel, Gate 1, Pattulos, Chennai - 2, Chennai</p>
+                                                <p>The Park Chennai, Nungambakkam, Chennai</p>
 
                                             </div>
 
@@ -502,7 +502,7 @@ const handleCrossChapterClick = () => {
                                                 <span>In-Person</span>
 
                                                 <p>May 29, 2025 (7.05am)</p>
-                                                <p>E Hotel, Gate 1, Pattulos, Chennai - 2, Chennai</p>
+                                                <p>Hotel Hilton, Guindy, Chennai</p>
 
                                             </div>
 
@@ -520,7 +520,7 @@ const handleCrossChapterClick = () => {
                                                 <span>In-Person</span>
 
                                                 <p>May 29, 2025 (7.05am)</p>
-                                                <p>E Hotel, Gate 1, Pattulos, Chennai - 2, Chennai</p>
+                                                <p>The ITC Grand Chola, Guindy, Chennai </p>
 
                                             </div>
 
