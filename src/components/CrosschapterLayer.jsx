@@ -12,81 +12,81 @@ const CrosschapterLayer = () => {
         {
             name: "David Murugeasan",
             category: "Real Estate Services | Real Estate Services (Other)",
-            chapter: "Millionaries",
+            chapter: "Grip Aram",
              photo: "assets/images/nft/creator-img5.png"
         },
         {
             name: "Deepika Sabapathi",
             category: "Manufacturing | Manufacturing (Other)",
-            chapter: "Millionaries",
+            chapter: "Grip Aram",
              photo: "assets/images/nft/creator-img5.png"
         },
         {
             name: "Dhilip Peter",
             category: "Computer & Programming | Computer Retailer",
-            chapter: " Aditi",
+            chapter: "GRIP Virutcham",
             photo: "assets/images/nft/creator-img5.png"
         },
         {
             name: "Dhivya Anandhan",
             category: "Travel | Tours/Tour Guide",
-            chapter: " Aditi",
+            chapter: " GRIP Virutcham",
              photo: "assets/images/nft/creator-img5.png"
         },
 
         {
             name: "Diwakar G",
             category: "Event Business Service | Events",
-            chapter: "Millionaries",
+            chapter: "Grip Aram",
             photo: "assets/images/nft/creator-img5.png"
         },
 
         {
             name: "Harikrishnan G",
             category: "Security & Investigation | CCTV",
-            chapter: " Aditi",
+            chapter: " GRIP Madhuram",
            photo: "assets/images/nft/creator-img5.png"
         },
 
         {
             name: "Jayakumar j",
             category: "Computer & Programming | Computer Retailer",
-            chapter: "BNI Aditi",
+            chapter: "GRIP Madhuram",
              photo: "assets/images/nft/creator-img5.png"
         },
 
         {
             name: "Hema Chandran",
             category: "Computer & Programming | Computer Retailer",
-            chapter: "BNI Aditi",
+            chapter: "GRIP Kireedam",
             photo: "assets/images/nft/creator-img5.png"
         },
 
         {
             name: "Jagadesshwaran",
             category: "Computer & Programming | Computer Retailer",
-            chapter: "BNI Aditi",
+            chapter: "GRIP Kireedam",
             photo: "assets/images/nft/creator-img5.png"
         },
 
         {
             name: "Nareshkumar",
             category: "Computer & Programming | Computer Retailer",
-            chapter: "BNI Aditi",
+            chapter: "GRIP Kireedam",
            photo: "assets/images/nft/creator-img5.png"
         },
 
         {
             name: "Geethalakshmi",
             category: "Computer & Programming | Computer Retailer",
-            chapter: "BNI Aditi",
+            chapter: "GRIP Aram",
             photo: "assets/images/nft/creator-img5.png"
         },
 
         {
             name: "Rajendra Babu",
             category: "Computer & Programming | Computer Retailer",
-            chapter: "BNI Aditi",
+            chapter: "GRIP Kireedam",
             photo: "assets/images/nft/creator-img5.png"
         },
         // ... more members

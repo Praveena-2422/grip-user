@@ -91,7 +91,7 @@ const handleCrossChapterClick = () => {
                                 lineHeight: '1.2',
                             }}
                         >
-                            Millionaries
+                            GRIP Aram
                         </Link>
 
                         <Link
@@ -562,7 +562,7 @@ const handleCrossChapterClick = () => {
                         <div className="modal-body ">
 
                             <div className="row mb-3">
-                                <div className="col-sm-6  fw-medium">Chapter: Millionaries</div>
+                                <div className="col-sm-6  fw-medium">Chapter: GRIP Aram</div>
 
                                 <div className="col-sm-6 text-end  fw-medium"><span className="text-danger">*</span> Required fields</div>
 
@@ -709,7 +709,7 @@ const handleCrossChapterClick = () => {
                         <div className="modal-body ">
 
                             <div className="row mb-3">
-                                <div className="col-sm-6  fw-medium">Chapter: Millionaries | Date: 23/05/2025</div>
+                                <div className="col-sm-6  fw-medium">Chapter: GRIP Aram | Date: 23/05/2025</div>
 
                                 <div className="col-sm-6 text-end  fw-medium"><span className="text-danger">*</span> Required fields</div>
 
@@ -1511,9 +1511,9 @@ const handleCrossChapterClick = () => {
                                     <div>
                                         <div><strong>Chapter : One to One Report</strong></div>
                                         <div class="d-flex gap-5 mt-2">
-                                            <small>Running User<br></br><strong>Vignesh.Veerasamy</strong></small>
+                                            <small>Running User<br></br><strong>Vignesh Prathap</strong></small>
                                             <small>Run At<br></br><strong>23-May-2025 5:01 PM</strong></small>
-                                            <small>Chapter<br></br><strong>Millionaires</strong></small>
+                                            <small>Chapter<br></br><strong>Grip Aram</strong></small>
                                         </div>
                                     </div>
 
@@ -1580,7 +1580,7 @@ const handleCrossChapterClick = () => {
                                             <tr class='text-xs'>
                                                 <td>14/02/25</td>
                                                 <td>Deepika Sabapathi</td>
-                                                <td>Vignesh .Veerasamy</td>
+                                                <td>Vignesh Prathap</td>
                                                 <td>Her office</td>
                                                 <td>121 one important Explain its benefits. To Deepika</td>
                                                 <td>Completed</td>
@@ -1589,7 +1589,7 @@ const handleCrossChapterClick = () => {
                                             <tr class='text-xs'>
                                                 <td>14/02/25</td>
                                                 <td>Nareshkumar K M</td>
-                                                <td>Vignesh .Veerasamy</td>
+                                                <td>Vignesh Prathap</td>
                                                 <td>Ambattur site</td>
                                                 <td>Residence Construction</td>
                                                 <td>Completed</td>
@@ -1597,7 +1597,7 @@ const handleCrossChapterClick = () => {
                                             <tr class='text-xs'>
                                                 <td>21/02/25</td>
                                                 <td>Nareshkumar K M</td>
-                                                <td>Vignesh .Veerasamy</td>
+                                                <td>Vignesh Prathap</td>
                                                 <td>Fourspaces office</td>
                                                 <td>Ongoing work related</td>
                                                 <td>Completed</td>
@@ -1693,7 +1693,7 @@ const handleCrossChapterClick = () => {
                                         <div class="d-flex gap-5 mt-2">
                                             <small>Running User<br></br><strong>Vignesh.Veerasamy</strong></small>
                                             <small>Run At<br></br><strong>23-May-2025 5:01 PM</strong></small>
-                                            <small>Chapter<br></br><strong>Millionaires</strong></small>
+                                            <small>Chapter<br></br><strong>GRIP Aram</strong></small>
                                         </div>
                                     </div>
 
@@ -1760,7 +1760,7 @@ const handleCrossChapterClick = () => {
                                             <tr class='text-xs'>
                                                 <td>30/04/25</td>
                                                 <td>S Ganesh Kumar</td>
-                                                <td>Vignesh .Veerasamy</td>
+                                                <td>Vignesh Prathap</td>
                                                 <td>Tier 1 (inside)</td>
                                                 <td>Card Given Call Required</td>
                                                 <td>+918300101620</td>
@@ -1812,7 +1812,7 @@ const handleCrossChapterClick = () => {
                                             <tr class='text-xs'>
                                                 <td>14/05/25</td>
                                                 <td>Raj Kumar</td>
-                                                <td>Vignesh .Veerasamy</td>
+                                                <td>Vignesh Prathap</td>
                                                 <td>Tier 1 (inside)</td>
                                                 <td>Card Given Call Required</td>
                                                 <td>+918300101620</td>
@@ -1825,7 +1825,7 @@ const handleCrossChapterClick = () => {
                                             <tr class='text-xs'>
                                                 <td>22/05/25</td>
                                                 <td>Guru A.</td>
-                                                <td>Vignesh .Veerasamy</td>
+                                                <td>Vignesh Prathap</td>
                                                 <td>Tier 1 (inside)</td>
                                                 <td>Card Given Call Required</td>
                                                 <td>+918300101620</td>
