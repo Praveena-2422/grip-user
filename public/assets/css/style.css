@@ -15798,3 +15798,9 @@ thead.table-danger.grip {
     overflow-y: scroll;
     max-height: 500px;
 }
+
+
+body.modal-open {
+    overflow: auto !important;
+    padding-right: 0 !important;
+}

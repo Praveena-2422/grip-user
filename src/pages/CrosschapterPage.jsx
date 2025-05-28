@@ -12,7 +12,7 @@ const CrosschapterPage = () => {
       <MasterLayout>
 
         {/* Breadcrumb */}
-        <Breadcrumb title="Connections" />
+        <Breadcrumb title="Cross Chapter List"  />
 
         {/* RoleAccessLayer */}
         <CrosschapterLayer />

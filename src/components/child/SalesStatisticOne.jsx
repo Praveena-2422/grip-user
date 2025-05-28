@@ -9,21 +9,33 @@ import { useNavigate } from 'react-router-dom';
 
 
 
+
 const SalesStatisticOne = () => {
 
     const navigate = useNavigate();
 
-    const handleCrossChapterClick = () => {
-        const modalEl = document.getElementById('exampleModalTwo');
-        const modalInstance = Modal.getInstance(modalEl) || new Modal(modalEl);
-        modalInstance.hide(); // hides the modal
-        document.body.classList.remove("modal-open"); // cleanup class
-        document.querySelector('.modal-backdrop')?.remove(); // remove backdrop
 
-        setTimeout(() => {
-            navigate("/cross-chapter");
-        }, 300); // Delay to allow modal hide animation
-    };
+
+const handleCrossChapterClick = () => {
+  const modalEl = document.getElementById('exampleModalTwo');
+  const modalInstance = Modal.getInstance(modalEl) || new Modal(modalEl);
+
+  modalInstance.hide();
+
+  // Allow Bootstrap's fade-out animation to complete
+  setTimeout(() => {
+    // Full cleanup
+    document.body.classList.remove("modal-open");
+    document.body.style.overflow = "auto";
+    document.body.style.paddingRight = "";
+
+    document.querySelectorAll(".modal-backdrop").forEach((el) => el.remove());
+
+    // Navigate to the new route
+    navigate("/cross-chapter");
+  }, 300); // Match this to Bootstrap's fade duration (300ms default)
+};
+
 
 
     let { donutChartSeriesTwo, donutChartOptionsTwo } = useReactApexChart()

@@ -1,8 +1,12 @@
 import { Icon } from '@iconify/react/dist/iconify.js';
 import React from 'react';
 import { Link } from 'react-router-dom';
+ import { useEffect } from "react";
 
 const CrosschapterLayer = () => {
+
+
+
 
     const members = [
         {
@@ -87,6 +91,15 @@ const CrosschapterLayer = () => {
         },
         // ... more members
     ];
+
+
+useEffect(() => {
+  document.body.classList.remove("modal-open");
+  document.body.style.overflow = "auto";
+  document.body.style.paddingRight = "";
+
+  document.querySelectorAll(".modal-backdrop").forEach((el) => el.remove());
+}, []);
 
 
 
