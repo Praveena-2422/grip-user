@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Icon } from "@iconify/react/dist/iconify.js";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import ThemeToggleButton from "../helper/ThemeToggleButton";
 
 const MasterLayout = ({ children }) => {
-  let [sidebarActive, seSidebarActive] = useState(false);
-  let [mobileMenu, setMobileMenu] = useState(false);
-  const location = useLocation(); // Hook to get the current route
+  const [sidebarActive, setSidebarActive] = useState(false);
+  const [mobileMenu, setMobileMenu] = useState(false);
+  const [profileOpen, setProfileOpen] = useState(false);
+  const [notificationOpen, setNotificationOpen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleDropdownClick = (event) => {
@@ -18,27 +20,24 @@ const MasterLayout = ({ children }) => {
 
       const isActive = clickedDropdown.classList.contains("open");
 
-      // Close all dropdowns
       const allDropdowns = document.querySelectorAll(".sidebar-menu .dropdown");
       allDropdowns.forEach((dropdown) => {
         dropdown.classList.remove("open");
         const submenu = dropdown.querySelector(".sidebar-submenu");
         if (submenu) {
-          submenu.style.maxHeight = "0px"; // Collapse submenu
+          submenu.style.maxHeight = "0px";
         }
       });
 
-      // Toggle the clicked dropdown
       if (!isActive) {
         clickedDropdown.classList.add("open");
         const submenu = clickedDropdown.querySelector(".sidebar-submenu");
         if (submenu) {
-          submenu.style.maxHeight = `${submenu.scrollHeight}px`; // Expand submenu
+          submenu.style.maxHeight = `${submenu.scrollHeight}px`;
         }
       }
     };
 
-    // Attach click event listeners to all dropdown triggers
     const dropdownTriggers = document.querySelectorAll(
       ".sidebar-menu .dropdown > a, .sidebar-menu .dropdown > Link"
     );
@@ -59,17 +58,15 @@ const MasterLayout = ({ children }) => {
             dropdown.classList.add("open");
             const submenu = dropdown.querySelector(".sidebar-submenu");
             if (submenu) {
-              submenu.style.maxHeight = `${submenu.scrollHeight}px`; // Expand submenu
+              submenu.style.maxHeight = `${submenu.scrollHeight}px`;
             }
           }
         });
       });
     };
 
-    // Open the submenu that contains the active route
     openActiveDropdown();
 
-    // Cleanup event listeners on unmount
     return () => {
       dropdownTriggers.forEach((trigger) => {
         trigger.removeEventListener("click", handleDropdownClick);
@@ -77,282 +74,118 @@ const MasterLayout = ({ children }) => {
     };
   }, [location.pathname]);
 
-  let sidebarControl = () => {
-    seSidebarActive(!sidebarActive);
-  };
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (!event.target.closest(".profile-dropdown")) setProfileOpen(false);
+      if (!event.target.closest(".notification-dropdown")) setNotificationOpen(false);
+    };
 
-  let mobileMenuControl = () => {
-    setMobileMenu(!mobileMenu);
-  };
+    document.addEventListener("click", handleClickOutside);
+    return () => document.removeEventListener("click", handleClickOutside);
+  }, []);
+
+  const toggleSidebar = () => setSidebarActive(!sidebarActive);
+  const toggleMobileMenu = () => setMobileMenu(!mobileMenu);
 
   return (
-    <section className={mobileMenu ? "overlay active" : "overlay "}>
-      {/* sidebar */}
-
-
-      <main
-        className={sidebarActive ? "dashboard-main active" : "dashboard-main"}
-      >
+    <section className={mobileMenu ? "overlay active" : "overlay"}>
+      <main className={sidebarActive ? "dashboard-main active" : "dashboard-main"}>
         <div className='navbar-header'>
           <div className='row align-items-center justify-content-between'>
             <div className='col-auto'>
               <div className='d-flex flex-wrap align-items-center gap-4'>
-
                 <div className="logoimggg">
-                  <img src="assets/images/grip/logo.png" className="header-logo-img"></img>
-
+                  <img src="assets/images/grip/logo.png" className="header-logo-img" alt="Logo" />
                 </div>
-
-                <button
-                  onClick={mobileMenuControl}
-                  type='button'
-                  className='sidebar-mobile-toggle'
-                >
-                  <Icon icon='heroicons:bars-3-solid' className='icon' />
-                </button>
-                {/* <form className='navbar-search'>
-                  <input type='text' name='search' placeholder='Search' />
-                  <Icon icon='ion:search-outline' className='icon' />
-                </form> */}
               </div>
             </div>
             <div className='col-auto'>
               <div className='d-flex flex-wrap align-items-center gap-3'>
-                {/* ThemeToggleButton */}
-
-
-                {/* Message dropdown end */}
-                <div className='dropdown'>
+                {/* Notification Dropdown */}
+                <div className='dropdown notification-dropdown position-relative'>
                   <button
                     className='has-indicator w-40-px h-40-px bg-gradient-blue-warning text-white rounded-circle d-flex justify-content-center align-items-center'
                     type='button'
-                    data-bs-toggle='dropdown'
+                    onClick={() => setNotificationOpen(!notificationOpen)}
                   >
-                    <Icon
-                      icon='iconoir:bell'
-                      className='text-white text-xl'
-                    />
+                    <Icon icon='iconoir:bell' className='text-white text-xl' />
                   </button>
-                  <div className='dropdown-menu to-top dropdown-menu-lg p-0'>
-                    <div className='m-16 py-12 px-16 radius-8 bg-primary-50 mb-16 d-flex align-items-center justify-content-between gap-2'>
-                      <div>
-                        <h6 className='text-lg text-primary-light fw-semibold mb-0'>
-                          Notifications
-                        </h6>
+                  {notificationOpen && (
+                    <div className='dropdown-menu show to-top dropdown-menu-lg p-0 custom-dropdown-position'>
+                      {/* Notification content */}
+                      <div className='m-16 py-12 px-16 radius-8 bg-primary-50 mb-16 d-flex align-items-center justify-content-between gap-2'>
+                        <h6 className='text-lg text-primary-light fw-semibold mb-0'>Notifications</h6>
+                        <span className='text-primary-600 fw-semibold text-lg w-40-px h-40-px rounded-circle bg-base d-flex justify-content-center align-items-center'>01</span>
                       </div>
-                      <span className='text-primary-600 fw-semibold text-lg w-40-px h-40-px rounded-circle bg-base d-flex justify-content-center align-items-center'>
-                        05
-                      </span>
+                      <div className='max-h-400-px overflow-y-auto scroll-sm pe-4'>
+                        {/* Your notification links go here */}
+                        {/* Sample Notification */}
+                        <Link to='#' className='px-24 py-12 d-flex align-items-start gap-3 mb-2 justify-content-between'>
+                          <div className='d-flex align-items-center gap-3'>
+                            <span className='w-44-px h-44-px bg-success-subtle text-success-main rounded-circle d-flex justify-content-center align-items-center flex-shrink-0'>
+                              <Icon icon='bitcoin-icons:verify-outline' className='icon text-xxl' />
+                            </span>
+                            <div>
+                              <h6 className='text-md fw-semibold mb-4'>Congratulations</h6>
+                              <p className='mb-0 text-sm text-secondary-light text-w-200-px'>
+                                Your profile has been Verified.
+                              </p>
+                            </div>
+                          </div>
+                          <span className='text-sm text-secondary-light flex-shrink-0'>23 Mins ago</span>
+                        </Link>
+                      </div>
+                      <div className='text-center py-12 px-16'>
+                        <Link to='#' className='text-primary-600 fw-semibold text-md'>
+                          See All Notification
+                        </Link>
+                      </div>
                     </div>
-                    <div className='max-h-400-px overflow-y-auto scroll-sm pe-4'>
-                      <Link
-                        to='#'
-                        className='px-24 py-12 d-flex align-items-start gap-3 mb-2 justify-content-between'
-                      >
-                        <div className='text-black hover-bg-transparent hover-text-primary d-flex align-items-center gap-3'>
-                          <span className='w-44-px h-44-px bg-success-subtle text-success-main rounded-circle d-flex justify-content-center align-items-center flex-shrink-0'>
-                            <Icon
-                              icon='bitcoin-icons:verify-outline'
-                              className='icon text-xxl'
-                            />
-                          </span>
-                          <div>
-                            <h6 className='text-md fw-semibold mb-4'>
-                              Congratulations
-                            </h6>
-                            <p className='mb-0 text-sm text-secondary-light text-w-200-px'>
-                              Your profile has been Verified. Your profile has
-                              been Verified
-                            </p>
-                          </div>
-                        </div>
-                        <span className='text-sm text-secondary-light flex-shrink-0'>
-                          23 Mins ago
-                        </span>
-                      </Link>
-                      <Link
-                        to='#'
-                        className='px-24 py-12 d-flex align-items-start gap-3 mb-2 justify-content-between bg-neutral-50'
-                      >
-                        <div className='text-black hover-bg-transparent hover-text-primary d-flex align-items-center gap-3'>
-                          <span className='w-44-px h-44-px bg-success-subtle text-success-main rounded-circle d-flex justify-content-center align-items-center flex-shrink-0'>
-                            <img
-                              src='assets/images/notification/profile-1.png'
-                              alt=''
-                            />
-                          </span>
-                          <div>
-                            <h6 className='text-md fw-semibold mb-4'>
-                              Ronald Richards
-                            </h6>
-                            <p className='mb-0 text-sm text-secondary-light text-w-200-px'>
-                              You can stitch between artboards
-                            </p>
-                          </div>
-                        </div>
-                        <span className='text-sm text-secondary-light flex-shrink-0'>
-                          23 Mins ago
-                        </span>
-                      </Link>
-                      <Link
-                        to='#'
-                        className='px-24 py-12 d-flex align-items-start gap-3 mb-2 justify-content-between'
-                      >
-                        <div className='text-black hover-bg-transparent hover-text-primary d-flex align-items-center gap-3'>
-                          <span className='w-44-px h-44-px bg-info-subtle text-info-main rounded-circle d-flex justify-content-center align-items-center flex-shrink-0'>
-                            AM
-                          </span>
-                          <div>
-                            <h6 className='text-md fw-semibold mb-4'>
-                              Arlene McCoy
-                            </h6>
-                            <p className='mb-0 text-sm text-secondary-light text-w-200-px'>
-                              Invite you to prototyping
-                            </p>
-                          </div>
-                        </div>
-                        <span className='text-sm text-secondary-light flex-shrink-0'>
-                          23 Mins ago
-                        </span>
-                      </Link>
-                      <Link
-                        to='#'
-                        className='px-24 py-12 d-flex align-items-start gap-3 mb-2 justify-content-between bg-neutral-50'
-                      >
-                        <div className='text-black hover-bg-transparent hover-text-primary d-flex align-items-center gap-3'>
-                          <span className='w-44-px h-44-px bg-success-subtle text-success-main rounded-circle d-flex justify-content-center align-items-center flex-shrink-0'>
-                            <img
-                              src='assets/images/notification/profile-2.png'
-                              alt=''
-                            />
-                          </span>
-                          <div>
-                            <h6 className='text-md fw-semibold mb-4'>
-                              Annette Black
-                            </h6>
-                            <p className='mb-0 text-sm text-secondary-light text-w-200-px'>
-                              Invite you to prototyping
-                            </p>
-                          </div>
-                        </div>
-                        <span className='text-sm text-secondary-light flex-shrink-0'>
-                          23 Mins ago
-                        </span>
-                      </Link>
-                      <Link
-                        to='#'
-                        className='px-24 py-12 d-flex align-items-start gap-3 mb-2 justify-content-between'
-                      >
-                        <div className='text-black hover-bg-transparent hover-text-primary d-flex align-items-center gap-3'>
-                          <span className='w-44-px h-44-px bg-info-subtle text-info-main rounded-circle d-flex justify-content-center align-items-center flex-shrink-0'>
-                            DR
-                          </span>
-                          <div>
-                            <h6 className='text-md fw-semibold mb-4'>
-                              Darlene Robertson
-                            </h6>
-                            <p className='mb-0 text-sm text-secondary-light text-w-200-px'>
-                              Invite you to prototyping
-                            </p>
-                          </div>
-                        </div>
-                        <span className='text-sm text-secondary-light flex-shrink-0'>
-                          23 Mins ago
-                        </span>
-                      </Link>
-                    </div>
-                    <div className='text-center py-12 px-16'>
-                      <Link
-                        to='#'
-                        className='text-primary-600 fw-semibold text-md'
-                      >
-                        See All Notification
-                      </Link>
-                    </div>
-                  </div>
+                  )}
                 </div>
-                {/* Notification dropdown end */}
-                <div className='dropdown'>
+
+                {/* Profile Dropdown */}
+                <div className='dropdown profile-dropdown position-relative '>
                   <div
-                    className='d-flex justify-content-center align-items-center rounded-circle'
-                    type='button'
-                    data-bs-toggle='dropdown'
+                    className='d-flex align-items-center cursor-pointer'
+                    onClick={() => setProfileOpen(!profileOpen)}
                   >
                     <img
                       src='assets/images/grip/vk.jpeg'
-                      alt='image_user'
+                      alt='Profile'
                       className='w-40-px mr-10 h-40-px object-fit-cover rounded-circle'
                     />
-
-                 <span >Vignesh Prathap</span>
+                    <span className='ms-2'>Vignesh Prathap</span>
                   </div>
-                  <div className='dropdown-menu to-top dropdown-menu-sm'>
-                    <div className='py-12 px-16 radius-8 bg-primary-50 mb-16 d-flex align-items-center justify-content-between gap-2'>
-                      <div>
-                        <h6 className='text-lg text-primary-light fw-semibold mb-2'>
-                         Vignesh Prathap
-                        </h6>
-                        <span className='text-secondary-light fw-medium text-sm'>
-                          Software Engineer
-                        </span>
+                  {profileOpen && (
+                    <div className='dropdown-menu show to-top dropdown-menu-sm custom-dropdown-position'>
+                      <div className='py-12 px-16 radius-8 bg-primary-50 mb-16 d-flex align-items-center justify-content-between gap-2'>
+                        <div>
+                          <h6 className='text-lg text-primary-light fw-semibold mb-2'>Vignesh Prathap</h6>
+                          <span className='text-secondary-light fw-medium text-sm'>Software Engineer</span>
+                        </div>
+                        <button type='button' className='hover-text-danger' onClick={() => setProfileOpen(false)}>
+                          <Icon icon='radix-icons:cross-1' className='icon text-xl' />
+                        </button>
                       </div>
-                      <button type='button' className='hover-text-danger'>
-                        <Icon
-                          icon='radix-icons:cross-1'
-                          className='icon text-xl'
-                        />
-                      </button>
+                      <ul className='to-top-list'>
+                        <li>
+                          <Link className='dropdown-item d-flex align-items-center gap-3' to='/'>
+                            <Icon icon='solar:user-linear' className='icon text-xl' />
+                            My Profile
+                          </Link>
+                        </li>
+
+                        <li>
+                          <Link className='dropdown-item d-flex align-items-center gap-3 text-danger' to='#'>
+                            <Icon icon='lucide:power' className='icon text-xl' />
+                            Log Out
+                          </Link>
+                        </li>
+                      </ul>
                     </div>
-                    <ul className='to-top-list'>
-                      <li>
-                        <Link
-                          className='dropdown-item text-black px-0 py-8 hover-bg-transparent hover-text-primary d-flex align-items-center gap-3'
-                          to='/'
-                        >
-                          <Icon
-                            icon='solar:user-linear'
-                            className='icon text-xl'
-                          />{" "}
-                          My Profile
-                        </Link>
-                      </li>
-                      <li>
-                        <Link
-                          className='dropdown-item text-black px-0 py-8 hover-bg-transparent hover-text-primary d-flex align-items-center gap-3'
-                          to='/'
-                        >
-                          <Icon
-                            icon='tabler:message-check'
-                            className='icon text-xl'
-                          />{" "}
-                          Inbox
-                        </Link>
-                      </li>
-                      <li>
-                        <Link
-                          className='dropdown-item text-black px-0 py-8 hover-bg-transparent hover-text-primary d-flex align-items-center gap-3'
-                          to='/'
-                        >
-                          <Icon
-                            icon='icon-park-outline:setting-two'
-                            className='icon text-xl'
-                          />
-                          Setting
-                        </Link>
-                      </li>
-                      <li>
-                        <Link
-                          className='dropdown-item text-black px-0 py-8 hover-bg-transparent hover-text-danger d-flex align-items-center gap-3'
-                          to='#'
-                        >
-                          <Icon icon='lucide:power' className='icon text-xl' />{" "}
-                          Log Out
-                        </Link>
-                      </li>
-                    </ul>
-                  </div>
+                  )}
                 </div>
-                {/* Profile dropdown end */}
               </div>
             </div>
           </div>
@@ -361,13 +194,12 @@ const MasterLayout = ({ children }) => {
         {/* dashboard-main-body */}
         <div className='dashboard-main-body'>{children}</div>
 
-        {/* Footer section */}
+        {/* Footer */}
         <footer className='d-footer'>
-          <div className='row '>
+          <div className='row'>
             <div className='colauto'>
               <p className='mb-0 text-center'>© 2025 GRIP. All Rights Reserved.</p>
             </div>
-
           </div>
         </footer>
       </main>

@@ -11,7 +11,7 @@ const AddUserPage = () => {
       <MasterLayout>
 
         {/* Breadcrumb */}
-        <Breadcrumb title="Add User" />
+        <Breadcrumb title="Profile" />
 
         {/* AddUserLayer */}
         <AddUserLayer />

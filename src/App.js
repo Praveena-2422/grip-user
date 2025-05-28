@@ -104,7 +104,7 @@ function App() {
     <BrowserRouter>
       <RouteScrollToTop />
       <Routes>
-        <Route exact path='/' element={<HomePageOne />} />
+        <Route exact path='/dashboard' element={<HomePageOne />} />
         <Route exact path='/connections' element={<ConnectionsPage />} />
          <Route exact path='/cross-chapter' element={<CrosschapterPage />} />
 
@@ -200,7 +200,7 @@ function App() {
         <Route exact path='/progress' element={<ProgressPage />} />
         <Route exact path='/radio' element={<RadioPage />} />
         <Route exact path='/role-access' element={<RoleAccessPage />} />
-        <Route exact path='/sign-in' element={<SignInPage />} />
+        <Route exact path='/' element={<SignInPage />} />
         <Route exact path='/sign-up' element={<SignUpPage />} />
         <Route exact path='/star-rating' element={<StarRatingPage />} />
         <Route exact path='/starred' element={<StarredPage />} />

@@ -13831,7 +13831,7 @@ select option {
 }
 
 .dropdown-menu.to-top {
-  top: calc(100% - 28px) !important;
+  top: calc(100% - -30px) !important;
 }
 
 @media (min-width: 575px) {
@@ -14158,7 +14158,7 @@ td.fc-header-center {
 }
 
 .auth-left {
-  background: linear-gradient(90deg, #ecf0ff 0%, #fafbff 100%);
+  /* background: linear-gradient(90deg, #ecf0ff 0%, #fafbff 100%); */
   width: 50%;
 }
 
@@ -15797,4 +15797,29 @@ thead.table-danger.grip {
 .reportdetailss {
     overflow-y: scroll;
     max-height: 500px;
+}
+.auth h4.mb-12 {
+    font-size: 20px !important;
+    padding-bottom: 20px;
+}
+
+.insidebox.max-w-464-px.mx-auto.w-100 {
+    background: #fff;
+    padding: 30px;
+}
+
+.auth.mainpage {
+    min-height: 100vh;
+    background-image: url(../images/auth/grip-signin.jpg);
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+}
+
+.auth.mainpage input {
+    text-align: left;
+}
+
+.custom-dropdown-position {
+    left: -180px !important;
 }

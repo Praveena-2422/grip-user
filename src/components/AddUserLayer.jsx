@@ -16,7 +16,7 @@ const AddUserLayer = () => {
         }
     };
     return (
-        <div className="card h-100 p-0 radius-12">
+       <div className="card h-100 p-0 radius-12">
             <div className="card-body p-24">
                 <div className="row justify-content-center">
                     <div className="col-xxl-6 col-xl-8 col-lg-10">
@@ -59,13 +59,43 @@ const AddUserLayer = () => {
                                             htmlFor="name"
                                             className="form-label fw-semibold text-primary-light text-sm mb-8"
                                         >
-                                            Full Name <span className="text-danger-600">*</span>
+                                            Name <span className="text-danger-600">*</span>
                                         </label>
                                         <input
                                             type="text"
                                             className="form-control radius-8"
                                             id="name"
-                                            placeholder="Enter Full Name"
+
+                                        />
+                                    </div>
+
+
+                                      <div className="mb-20">
+                                        <label
+                                            htmlFor="name"
+                                            className="form-label fw-semibold text-primary-light text-sm mb-8"
+                                        >
+                                          Company  Name <span className="text-danger-600">*</span>
+                                        </label>
+                                        <input
+                                            type="text"
+                                            className="form-control radius-8"
+                                            id="name"
+
+                                        />
+                                    </div>
+                                          <div className="mb-20">
+                                        <label
+                                            htmlFor="number"
+                                            className="form-label fw-semibold text-primary-light text-sm mb-8"
+                                        >
+                                            Mobile Number
+                                        </label>
+                                        <input
+                                            type="text"
+                                            className="form-control radius-8"
+                                            id="number"
+
                                         />
                                     </div>
                                     <div className="mb-20">
@@ -79,78 +109,44 @@ const AddUserLayer = () => {
                                             type="email"
                                             className="form-control radius-8"
                                             id="email"
-                                            placeholder="Enter email address"
+
                                         />
                                     </div>
-                                    <div className="mb-20">
+
+
+                                      <div className="mb-20">
                                         <label
                                             htmlFor="number"
                                             className="form-label fw-semibold text-primary-light text-sm mb-8"
                                         >
-                                            Phone
+                                           Username
                                         </label>
                                         <input
-                                            type="email"
+                                            type="text"
                                             className="form-control radius-8"
                                             id="number"
-                                            placeholder="Enter phone number"
+
                                         />
                                     </div>
-                                    <div className="mb-20">
+
+
+                                      <div className="mb-20">
                                         <label
-                                            htmlFor="depart"
+                                            htmlFor="number"
                                             className="form-label fw-semibold text-primary-light text-sm mb-8"
                                         >
-                                            Department
-                                            <span className="text-danger-600">*</span>{" "}
+                                           Password
                                         </label>
-                                        <select
-                                            className="form-control radius-8 form-select"
-                                            id="depart"
-                                            defaultValue="Enter Event Title"
-                                        >
-                                            <option value="Enter Event Title" disabled>
-                                                Enter Event Title
-                                            </option>
-                                            <option value="Enter Event Title One">Enter Event Title One</option>
-                                            <option value="Enter Event Title Two">Enter Event Title Two</option>
-                                        </select>
+                                      <input
+                                type="password"
+                                name="#0"
+                                className="form-control"
+                                placeholder="*******"
+                            />
                                     </div>
-                                    <div className="mb-20">
-                                        <label
-                                            htmlFor="desig"
-                                            className="form-label fw-semibold text-primary-light text-sm mb-8"
-                                        >
-                                            Designation
-                                            <span className="text-danger-600">*</span>{" "}
-                                        </label>
-                                        <select
-                                            className="form-control radius-8 form-select"
-                                            id="desig"
-                                            defaultValue="Enter Designation Title"
-                                        >
-                                            <option value="Enter Designation Title" disabled>
-                                                Enter Designation Title
-                                            </option>
-                                            <option value="Enter Designation Title One">Enter Designation Title One</option>
-                                            <option value="Enter Designation Title Two">Enter Designation Title Two</option>
-                                        </select>
-                                    </div>
-                                    <div className="mb-20">
-                                        <label
-                                            htmlFor="desc"
-                                            className="form-label fw-semibold text-primary-light text-sm mb-8"
-                                        >
-                                            Description
-                                        </label>
-                                        <textarea
-                                            name="#0"
-                                            className="form-control radius-8"
-                                            id="desc"
-                                            placeholder="Write description..."
-                                            defaultValue={""}
-                                        />
-                                    </div>
+
+                             
+
                                     <div className="d-flex align-items-center justify-content-center gap-3">
                                         <button
                                             type="button"
@@ -160,7 +156,7 @@ const AddUserLayer = () => {
                                         </button>
                                         <button
                                             type="submit"
-                                            className="btn btn-primary border border-primary-600 text-md px-56 py-12 radius-8"
+                                            className="btn btn-primary grip  text-md px-56 py-12 radius-8"
                                         >
                                             Save
                                         </button>
@@ -172,7 +168,6 @@ const AddUserLayer = () => {
                 </div>
             </div>
         </div>
-
     );
 };
 
