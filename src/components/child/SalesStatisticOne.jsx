@@ -134,7 +134,7 @@ const SalesStatisticOne = () => {
 
 
 
-            <div className="col-xxl-12 col-xl-12">
+            <div className="col-12">
                 <div className="card h-100 mb-3">
                     <div className="card-body">
                         <div className="d-flex align-items-center flex-wrap gap-2 justify-content-between mb-20">
@@ -168,7 +168,7 @@ const SalesStatisticOne = () => {
 
 
                             {/* Right side details */}
-                            <div className="col-xxl-9">
+                            <div className="col-9">
 
                                 <div className='row g-3'>
 
@@ -454,7 +454,7 @@ const SalesStatisticOne = () => {
                                 </div>
                             </div>
 
-                                    <div className="col-md-3">
+                                    <div className="col-3">
                                 <div className="card bg-danger-100 h-100 p-0">
 
                                     <div className="card-body p-24">
