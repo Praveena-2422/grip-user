@@ -14176,6 +14176,26 @@ td.fc-header-center {
     max-width: 100%;
     width: 100%;
   }
+  .dropdown.profile-dropdown.position-relative span{
+  display: none;
+}
+img.header-logo-img {
+    width: 120px !important;
+}
+.navbar-header {
+    height: 5rem !important;
+    background-color: #fee2e2;
+    position: sticky;
+    top: 0;
+    padding: 15px 15px !important;
+    z-index: 2;
+}
+.firstpartt.d-flex.align-items-center.flex-wrap.gap-2 a {
+    width: 100% !important;
+}
+.firstpartt.d-flex.align-items-center.flex-wrap.gap-2 form {
+    width: 100% !important;
+}
 }
 .auth.forgot-password-page .auth-left {
   background: var(

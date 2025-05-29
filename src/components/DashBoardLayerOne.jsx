@@ -15,7 +15,7 @@ const DashBoardLayerOne = () => {
             {/* UnitCountOne */}
             {/* <UnitCountOne /> */}
 
-            <section className="row gy-4 mt-1">
+            <section className="row gy-4">
 
                 {/* SalesStatisticOne */}
                 <SalesStatisticOne />

@@ -56,8 +56,8 @@ const SalesStatisticOne = () => {
 
                     </div>
 
-                    <div className="d-flex align-items-center flex-wrap gap-2">
-                        <form className="navbar-search position-relative" style={{ width: '200px', height: '50px' }}>
+                    <div className="firstpartt d-flex align-items-center flex-wrap gap-2">
+                        <form className="navbar-searchh position-relative" style={{ width: '200px', height: '50px' }}>
                             <input
                                 type="text"
                                 name="search"
@@ -140,9 +140,11 @@ const SalesStatisticOne = () => {
                         <div className="d-flex align-items-center flex-wrap gap-2 justify-content-between mb-20">
                             <h6 className="mb-2 fw-bold text-lg mb-0">Referrals Given</h6>
                             <select className="form-select form-select-sm w-auto bg-base border-grip text-secondary-light" defaultValue="Today">
-                                <option value="Today">Last 6 Months</option>
-                                <option value="Weekly">Last 12 Months</option>
-                                <option value="Monthly">Lifetime</option>
+                                <option value="Today">This Week</option>
+                                <option value="Weekly">This Month</option>
+                                <option value="Monthly">Last Week</option>
+                                 <option value="Monthly">Last Month</option>
+                                  <option value="Monthly">This Term</option>
                             </select>
                         </div>
 
@@ -163,15 +165,7 @@ const SalesStatisticOne = () => {
                                 </div>
                             </div> */}
 
-                            <div className="col-md-3">
-                                <div className="card bg-danger-100 h-100 p-0">
 
-                                    <div className="card-body p-24">
-                                        <ReactApexChart id="lineDataLabel" options={lineDataLabelOptions} series={lineDataLabelSeries} type="line"
-                                            height={350} />
-                                    </div>
-                                </div>
-                            </div>
 
                             {/* Right side details */}
                             <div className="col-xxl-9">
@@ -457,6 +451,16 @@ const SalesStatisticOne = () => {
                                         </div>
                                     </div>
 
+                                </div>
+                            </div>
+
+                                    <div className="col-md-3">
+                                <div className="card bg-danger-100 h-100 p-0">
+
+                                    <div className="card-body p-24">
+                                        <ReactApexChart id="lineDataLabel" options={lineDataLabelOptions} series={lineDataLabelSeries} type="line"
+                                            height={350} />
+                                    </div>
                                 </div>
                             </div>
                         </div> {/* row gy-4 */}
