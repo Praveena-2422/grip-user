@@ -138,7 +138,7 @@ const SalesStatisticOne = () => {
                 <div className="card h-100 mb-3">
                     <div className="card-body">
                         <div className="d-flex align-items-center flex-wrap gap-2 justify-content-between mb-20">
-                            <h6 className="mb-2 fw-bold text-lg mb-0">Referrals Given</h6>
+                            <h6 className="mb-2 fw-bold text-lg mb-0">Dashboard</h6>
                             <select className="form-select form-select-sm w-auto bg-base border-grip text-secondary-light" defaultValue="Today">
                                 <option value="Today">This Week</option>
                                 <option value="Weekly">This Month</option>
