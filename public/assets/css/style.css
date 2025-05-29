@@ -15843,3 +15843,8 @@ thead.table-danger.grip {
 .custom-dropdown-position {
     left: -180px !important;
 }
+
+
+.box-shadow{
+  box-shadow: 0 0.25rem 1.875rem rgb(87 63 61 / 20%);
+}

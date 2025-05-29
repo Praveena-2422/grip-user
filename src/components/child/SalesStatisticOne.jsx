@@ -454,15 +454,100 @@ const SalesStatisticOne = () => {
                                 </div>
                             </div>
 
-                                    <div className="col-3">
-                                <div className="card bg-danger-100 h-100 p-0">
 
-                                    <div className="card-body p-24">
-                                        <ReactApexChart id="lineDataLabel" options={lineDataLabelOptions} series={lineDataLabelSeries} type="line"
-                                            height={350} />
-                                    </div>
-                                </div>
-                            </div>
+
+
+                                      <div className='col-3'>
+                                          <div className='card box-shadow radius-16 pb-3'>
+                                            <div className='card-header'>
+                                              <div className='d-flex align-items-center flex-wrap gap-2 justify-content-between'>
+                                                <h6 className='mb-2 fw-bold text-lg mb-0'>Payment </h6>
+                                                <Link
+                                                  to='#'
+                                                  className='text-grip hover-text-primary d-flex align-items-center gap-1'
+                                                >
+                                                  View All
+                                                  <iconify-icon
+                                                    icon='solar:alt-arrow-right-linear'
+                                                    className='icon'
+                                                  />
+                                                </Link>
+                                              </div>
+                                            </div>
+                                            <div className='card-body'>
+                                              <div className='d-flex align-items-center justify-content-between pb-10 mb-10 border-bottom border-neutral-200'>
+                                                <div className=''>
+                                                  <h6 className='text-md mb-0'>	Monthly meeting fee</h6>
+                                                  <span className='text-xs text-secondary-light fw-medium'>
+                                                    18 June 2025
+                                                  </span>
+                                                </div>
+                                                <div className='text-center'>
+                                                  <h6 className='text-sm mb-1'>₹1000</h6>
+                                                  <span className='text-xs fw-medium text-success-600 bg-success-100  px-3'>
+                                                   Pay Now
+                                                  </span>
+                                                </div>
+                                              </div>
+                                              <div className='d-flex align-items-center justify-content-between pb-10 mb-10 border-bottom border-neutral-200'>
+                                                <div className=''>
+                                                  <h6 className='text-md mb-0'>Event Fee</h6>
+                                                  <span className='text-xs text-secondary-light fw-medium'>
+                                                    22 June 2024
+                                                  </span>
+                                                </div>
+                                                <div className='text-center'>
+                                                  <h6 className='text-sm mb-1'>₹500</h6>
+                                                  <span className='text-xs fw-medium text-success-600 bg-success-100  px-3'>
+                                                   Pay Now
+                                                  </span>
+                                                </div>
+                                              </div>
+                                              <div className='d-flex align-items-center justify-content-between pb-10 mb-10 border-bottom border-neutral-200'>
+                                                <div className=''>
+                                                  <h6 className='text-md mb-0'>Membership Renewal</h6>
+                                                  <span className='text-xs text-secondary-light fw-medium'>
+                                                    25 June 2024
+                                                  </span>
+                                                </div>
+                                                 <div className='text-center'>
+                                                  <h6 className='text-sm mb-1'>₹2000</h6>
+                                                  <span className='text-xs fw-medium text-success-600 bg-success-100  px-3'>
+                                                   Pay Now
+                                                  </span>
+                                                </div>
+                                              </div>
+                                              <div className='d-flex align-items-center justify-content-between pb-10 mb-10 border-bottom border-neutral-200'>
+                                                <div className=''>
+                                                  <h6 className='text-md mb-0'>	Special Contribution </h6>
+                                                  <span className='text-xs text-secondary-light fw-medium'>
+                                                    28 June 2024
+                                                  </span>
+                                                </div>
+                                                <div className='text-center'>
+                                                  <h6 className='text-sm mb-1'>₹1500</h6>
+                                                  <span className='text-xs fw-medium text-success-600 bg-success-100  px-3'>
+                                                   Pay Now
+                                                  </span>
+                                                </div>
+                                              </div>
+                                              <div className='d-flex align-items-center justify-content-between'>
+                                                <div className=''>
+                                                  <h6 className='text-md mb-0'>Training</h6>
+                                                  <span className='text-xs text-secondary-light fw-medium'>
+                                                    30 June 2024
+                                                  </span>
+                                                </div>
+                                                 <div className='text-center'>
+                                                  <h6 className='text-sm mb-1'>₹300</h6>
+                                                  <span className='text-xs fw-medium text-success-600 bg-success-100  px-3'>
+                                                   Pay Now
+                                                  </span>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
                         </div> {/* row gy-4 */}
                     </div> {/* col-xxl-8 */}
                 </div> {/* row gy-4 */}
@@ -522,7 +607,7 @@ const SalesStatisticOne = () => {
                 <div className="card h-100">
                     <div className="card-body">
                         <div className="d-flex align-items-center flex-wrap gap-2 justify-content-between mb-20">
-                            <h6 className="mb-2 fw-bold text-xl mb-0">Upcoming Meeting and Events</h6>
+                            <h6 className="mb-2 fw-bold text-xl mb-0">Upcoming  Events</h6>
                             <Link
                                 to="#"
                                 className="text-grip hover-text-primary d-flex align-items-center gap-1"
