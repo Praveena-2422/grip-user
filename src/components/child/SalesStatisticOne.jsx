@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+
 import { Icon } from '@iconify/react/dist/iconify.js';
 import ReactApexChart from 'react-apexcharts';
 import useReactApexChart from '../../hook/useReactApexChart';
@@ -8,11 +9,73 @@ import { useNavigate } from 'react-router-dom';
 
 
 
-
+const dummyMembers = [
+    {
+        name: "Deepika Senthil",
+        business: "Ocean Softwares",
+        mobile: "9876543210",
+        chapter: "GRIP Aram",
+        zone: "Chennai",
+        category: "Web Developer",
+    },
+    {
+        name: "Kesavan Dhanbani",
+        business: "Smith Photography",
+        mobile: "9876543210",
+        chapter: "GRIP Madhuram",
+        zone: "Chennai",
+        category: "Photographer",
+    },
+    {
+        name: "Arun Kumar",
+        business: "Kumar Digital",
+        mobile: "9999999999",
+        chapter: "GRIP Kireedam",
+        zone: "Chennai",
+        category: "Digital Marketing",
+    },
+];
 
 const SalesStatisticOne = () => {
 
+
+
+const [selectedMember, setSelectedMember] = useState(null);
+const [showViewModal, setShowViewModal] = useState(false);
+
+
+
     const navigate = useNavigate();
+
+
+    const handleViewClick = (member) => {
+  setSelectedMember(member);
+  setShowViewModal(true);
+};
+
+
+
+
+    useEffect(() => {
+  const modalEl = document.getElementById('searchResultModal');
+
+  const handleModalHidden = () => {
+    document.body.classList.remove('modal-open');
+    document.body.style.overflow = '';
+    document.body.style.paddingRight = '';
+
+    // Remove any lingering backdrops
+    const backdrop = document.querySelector('.modal-backdrop');
+    if (backdrop) backdrop.remove();
+  };
+
+  modalEl?.addEventListener('hidden.bs.modal', handleModalHidden);
+
+  return () => {
+    modalEl?.removeEventListener('hidden.bs.modal', handleModalHidden);
+  };
+}, []);
+
 
 
 
@@ -40,6 +103,64 @@ const SalesStatisticOne = () => {
 
     let { donutChartSeriesTwo, donutChartOptionsTwo } = useReactApexChart()
     let { lineDataLabelSeries, lineDataLabelOptions } = useReactApexChart()
+
+    const [searchFields, setSearchFields] = useState({
+        name: "",
+        business: "",
+        mobile: "",
+        chapter: "",
+        zone: "",
+        category: "",
+    });
+
+    const [results, setResults] = useState([
+        {
+            name: "Deepika",
+            business: "Doe Designs",
+            mobile: "123-456-7890",
+            email: "john@example.com",
+            chapter: "GRIP Aram",
+            zone: "Chennai",
+            category: "Web Developer"
+        },
+        {
+            name: "Jane Smith",
+            business: "Smith Marketing",
+            mobile: "987-654-3210",
+            email: "jane@example.com",
+            chapter: "GRIP Virutcham",
+            zone: "Chennai",
+            category: "Marketing"
+        }
+    ]);
+
+
+    const handleInputChange = (e) => {
+        setSearchFields({ ...searchFields, [e.target.name]: e.target.value });
+    };
+
+    const handleSearch = () => {
+        const filtered = dummyMembers.filter((member) => {
+            return (
+                (!searchFields.name || member.name.toLowerCase().includes(searchFields.name.toLowerCase())) &&
+                (!searchFields.business || member.business.toLowerCase().includes(searchFields.business.toLowerCase())) &&
+                (!searchFields.mobile || member.mobile.includes(searchFields.mobile)) &&
+                (!searchFields.chapter || member.chapter === searchFields.chapter) &&
+                (!searchFields.zone || member.zone === searchFields.zone) &&
+                (!searchFields.category || member.category === searchFields.category)
+            );
+        });
+
+        setResults(filtered);
+
+        // Hide search modal, show result modal
+        const searchModal = Modal.getInstance(document.getElementById("memberSearchModal"));
+        searchModal.hide();
+
+        const resultModal = new Modal(document.getElementById("searchResultModal"));
+        resultModal.show();
+    };
+
 
 
 
@@ -91,12 +212,13 @@ const SalesStatisticOne = () => {
                                 lineHeight: '1.2',
                             }}
                         >
-                            Print Your Weekly Slips
+                            Print Your Slips
                         </Link>
 
                         <Link
                             to=""
-                            className="btn text-white bg-gradient-blue-warning text-sm btn-sm d-flex align-items-center justify-content-center gap-2 text-center"
+                            className="btn text-white bg-gradient-blue-warning text-sm btn-sm d-flex align-items-center justify-content-center gap-2 text-center" data-bs-toggle="modal"
+                            data-bs-target="#memberSearchModal"
                             style={{
                                 width: '200px',
                                 height: '50px',
@@ -106,7 +228,7 @@ const SalesStatisticOne = () => {
                                 lineHeight: '1.2',
                             }}
                         >
-                            My Personal Participation Report
+                            Member Search
                         </Link>
 
                         <Link
@@ -143,8 +265,8 @@ const SalesStatisticOne = () => {
                                 <option value="Today">This Week</option>
                                 <option value="Weekly">This Month</option>
                                 <option value="Monthly">Last Week</option>
-                                 <option value="Monthly">Last Month</option>
-                                  <option value="Monthly">This Term</option>
+                                <option value="Monthly">Last Month</option>
+                                <option value="Monthly">This Term</option>
                             </select>
                         </div>
 
@@ -457,97 +579,97 @@ const SalesStatisticOne = () => {
 
 
 
-                                      <div className='col-3'>
-                                          <div className='card box-shadow radius-16 pb-3'>
-                                            <div className='card-header'>
-                                              <div className='d-flex align-items-center flex-wrap gap-2 justify-content-between'>
-                                                <h6 className='mb-2 fw-bold text-lg mb-0'>Payment </h6>
-                                                <Link
-                                                  to='#'
-                                                  className='text-grip hover-text-primary d-flex align-items-center gap-1'
-                                                >
-                                                  View All
-                                                  <iconify-icon
+                            <div className='col-3'>
+                                <div className='card box-shadow radius-16 pb-3'>
+                                    <div className='card-header'>
+                                        <div className='d-flex align-items-center flex-wrap gap-2 justify-content-between'>
+                                            <h6 className='mb-2 fw-bold text-lg mb-0'>Payment </h6>
+                                            <Link
+                                                to='#'
+                                                className='text-grip hover-text-primary d-flex align-items-center gap-1'
+                                            >
+                                                View All
+                                                <iconify-icon
                                                     icon='solar:alt-arrow-right-linear'
                                                     className='icon'
-                                                  />
-                                                </Link>
-                                              </div>
-                                            </div>
-                                            <div className='card-body'>
-                                              <div className='d-flex align-items-center justify-content-between pb-10 mb-10 border-bottom border-neutral-200'>
-                                                <div className=''>
-                                                  <h6 className='text-md mb-0'>	Monthly meeting fee</h6>
-                                                  <span className='text-xs text-secondary-light fw-medium'>
-                                                    18 June 2025
-                                                  </span>
-                                                </div>
-                                                <div className='text-center'>
-                                                  <h6 className='text-sm mb-1'>₹1000</h6>
-                                                  <span className='text-xs fw-medium text-success-600 bg-success-100  px-3'>
-                                                   Pay Now
-                                                  </span>
-                                                </div>
-                                              </div>
-                                              <div className='d-flex align-items-center justify-content-between pb-10 mb-10 border-bottom border-neutral-200'>
-                                                <div className=''>
-                                                  <h6 className='text-md mb-0'>Event Fee</h6>
-                                                  <span className='text-xs text-secondary-light fw-medium'>
-                                                    22 June 2024
-                                                  </span>
-                                                </div>
-                                                <div className='text-center'>
-                                                  <h6 className='text-sm mb-1'>₹500</h6>
-                                                  <span className='text-xs fw-medium text-success-600 bg-success-100  px-3'>
-                                                   Pay Now
-                                                  </span>
-                                                </div>
-                                              </div>
-                                              <div className='d-flex align-items-center justify-content-between pb-10 mb-10 border-bottom border-neutral-200'>
-                                                <div className=''>
-                                                  <h6 className='text-md mb-0'>Membership Renewal</h6>
-                                                  <span className='text-xs text-secondary-light fw-medium'>
-                                                    25 June 2024
-                                                  </span>
-                                                </div>
-                                                 <div className='text-center'>
-                                                  <h6 className='text-sm mb-1'>₹2000</h6>
-                                                  <span className='text-xs fw-medium text-success-600 bg-success-100  px-3'>
-                                                   Pay Now
-                                                  </span>
-                                                </div>
-                                              </div>
-                                              <div className='d-flex align-items-center justify-content-between pb-10 mb-10 border-bottom border-neutral-200'>
-                                                <div className=''>
-                                                  <h6 className='text-md mb-0'>	Special Contribution </h6>
-                                                  <span className='text-xs text-secondary-light fw-medium'>
-                                                    28 June 2024
-                                                  </span>
-                                                </div>
-                                                <div className='text-center'>
-                                                  <h6 className='text-sm mb-1'>₹1500</h6>
-                                                  <span className='text-xs fw-medium text-success-600 bg-success-100  px-3'>
-                                                   Pay Now
-                                                  </span>
-                                                </div>
-                                              </div>
-                                              <div className='d-flex align-items-center justify-content-between'>
-                                                <div className=''>
-                                                  <h6 className='text-md mb-0'>Training</h6>
-                                                  <span className='text-xs text-secondary-light fw-medium'>
-                                                    30 June 2024
-                                                  </span>
-                                                </div>
-                                                 <div className='text-center'>
-                                                  <h6 className='text-sm mb-1'>₹300</h6>
-                                                  <span className='text-xs fw-medium text-success-600 bg-success-100  px-3'>
-                                                   Pay Now
-                                                  </span>
-                                                </div>
-                                              </div>
-                                            </div>
-                                          </div>
+                                                />
+                                            </Link>
                                         </div>
+                                    </div>
+                                    <div className='card-body'>
+                                        <div className='d-flex align-items-center justify-content-between pb-10 mb-10 border-bottom border-neutral-200'>
+                                            <div className=''>
+                                                <h6 className='text-md mb-0'>	Monthly meeting fee</h6>
+                                                <span className='text-xs text-secondary-light fw-medium'>
+                                                    18 June 2025
+                                                </span>
+                                            </div>
+                                            <div className='text-center'>
+                                                <h6 className='text-sm mb-1'>₹1000</h6>
+                                                <span className='text-xs fw-medium text-success-600 bg-success-100  px-3'>
+                                                    Pay Now
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div className='d-flex align-items-center justify-content-between pb-10 mb-10 border-bottom border-neutral-200'>
+                                            <div className=''>
+                                                <h6 className='text-md mb-0'>Event Fee</h6>
+                                                <span className='text-xs text-secondary-light fw-medium'>
+                                                    22 June 2024
+                                                </span>
+                                            </div>
+                                            <div className='text-center'>
+                                                <h6 className='text-sm mb-1'>₹500</h6>
+                                                <span className='text-xs fw-medium text-success-600 bg-success-100  px-3'>
+                                                    Pay Now
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div className='d-flex align-items-center justify-content-between pb-10 mb-10 border-bottom border-neutral-200'>
+                                            <div className=''>
+                                                <h6 className='text-md mb-0'>Membership Renewal</h6>
+                                                <span className='text-xs text-secondary-light fw-medium'>
+                                                    25 June 2024
+                                                </span>
+                                            </div>
+                                            <div className='text-center'>
+                                                <h6 className='text-sm mb-1'>₹2000</h6>
+                                                <span className='text-xs fw-medium text-success-600 bg-success-100  px-3'>
+                                                    Pay Now
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div className='d-flex align-items-center justify-content-between pb-10 mb-10 border-bottom border-neutral-200'>
+                                            <div className=''>
+                                                <h6 className='text-md mb-0'>	Special Contribution </h6>
+                                                <span className='text-xs text-secondary-light fw-medium'>
+                                                    28 June 2024
+                                                </span>
+                                            </div>
+                                            <div className='text-center'>
+                                                <h6 className='text-sm mb-1'>₹1500</h6>
+                                                <span className='text-xs fw-medium text-success-600 bg-success-100  px-3'>
+                                                    Pay Now
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div className='d-flex align-items-center justify-content-between'>
+                                            <div className=''>
+                                                <h6 className='text-md mb-0'>Training</h6>
+                                                <span className='text-xs text-secondary-light fw-medium'>
+                                                    30 June 2024
+                                                </span>
+                                            </div>
+                                            <div className='text-center'>
+                                                <h6 className='text-sm mb-1'>₹300</h6>
+                                                <span className='text-xs fw-medium text-success-600 bg-success-100  px-3'>
+                                                    Pay Now
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div> {/* row gy-4 */}
                     </div> {/* col-xxl-8 */}
                 </div> {/* row gy-4 */}
@@ -824,6 +946,368 @@ const SalesStatisticOne = () => {
                     </div>
                 </div>
             </div>
+
+
+
+
+            <div
+                className="modal fade"
+                id="memberSearchModal"
+                tabIndex={-1}
+                aria-labelledby="memberSearchModal"
+                aria-hidden="true"
+            >
+                <div className="modal-dialog modal-xl modal-dialog-centered">
+                    <div className="modal-content radius-16 bg-base">
+                        <div className="modal-header py-16 px-24 border border-top-0 border-start-0 border-end-0">
+                            <h1 className="modal-title fs-5" id="memberSearchModal">
+                                Member Search
+                            </h1>
+                            <button
+                                type="button"
+                                className="btn-close"
+                                data-bs-dismiss="modal"
+                                aria-label="Close"
+                            />
+
+
+                        </div>
+
+
+
+                        <div className="modal-body ">
+
+
+                            <form action="#">
+                                <div className="row">
+                                    <div className="col-4">
+                                        <div className="mb-20">
+                                            <label
+                                                htmlFor="name"
+                                                className="form-label fw-semibold text-primary-light text-sm mb-8"
+                                            >
+                                                Name
+
+                                            </label>
+                                            <input
+                                                type="text"
+                                                name="name"
+                                                className="form-control radius-8"
+                                                placeholder="Enter Full Name"
+                                                value={searchFields.name}
+                                                onChange={handleInputChange}
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className="col-4">
+                                        <div className="mb-20">
+                                            <label
+                                                htmlFor="email"
+                                                className="form-label fw-semibold text-primary-light text-sm mb-8"
+                                            >
+                                                Business Name
+                                            </label>
+                                            <input
+                                                type="text"
+                                                name="business"
+                                                className="form-control radius-8"
+                                                placeholder="Enter Business Name"
+                                                value={searchFields.business}
+                                                onChange={handleInputChange}
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className="col-4">
+                                        <div className="mb-20">
+                                            <label
+                                                htmlFor="number"
+                                                className="form-label fw-semibold text-primary-light text-sm mb-8"
+                                            >
+                                                Mobile Number
+                                            </label>
+                                            <input
+                                                type="text"
+                                                name="mobile"
+                                                className="form-control radius-8"
+                                                placeholder="Enter Mobile Number"
+                                                value={searchFields.mobile}
+                                                onChange={handleInputChange}
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className="col-4">
+                                        <div className="mb-20">
+                                            <label
+                                                htmlFor="depart"
+                                                className="form-label fw-semibold text-primary-light text-sm mb-8"
+                                            >
+                                                Chapter Name
+
+                                            </label>
+                                            <select
+                                                name="chapter"
+                                                className="form-select radius-8"
+                                                value={searchFields.chapter}
+                                                onChange={handleInputChange}
+                                            >
+                                                <option value="">Select Chapter</option>
+                                                <option value="GRIP Aram">GRIP Aram</option>
+                                                <option value="GRIP Virutcham">GRIP Virutcham</option>
+                                                <option value="GRIP Madhuram">GRIP Madhuram</option>
+                                                <option value="GRIP Kireedam">GRIP Kireedam</option>
+                                                <option value="GRIP Amudham">GRIP Amudham</option>
+                                            </select>
+
+
+                                        </div>
+                                    </div>
+                                    <div className="col-4">
+                                        <div className="mb-20">
+                                            <label
+                                                htmlFor="desig"
+                                                className="form-label fw-semibold text-primary-light text-sm mb-8"
+                                            >
+                                                Zone
+
+                                            </label>
+                                            <select
+                                                name="zone"
+                                                className="form-select radius-8"
+                                                value={searchFields.zone}
+                                                onChange={handleInputChange}
+                                            >
+                                                <option value="">Select Zone</option>
+                                                <option value="Chennai">Chennai</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div className="col-4">
+                                        <div className="mb-20">
+                                            <label
+                                                htmlFor="Language"
+                                                className="form-label fw-semibold text-primary-light text-sm mb-8"
+                                            >
+                                                Categroy
+                                                <span className="text-danger-600">*</span>{" "}
+                                            </label>
+                                            <select
+                                                name="category"
+                                                className="form-select radius-8"
+                                                value={searchFields.category}
+                                                onChange={handleInputChange}
+                                            >
+                                                <option value="">Select Category</option>
+                                                <option value="Web Developer">Web Developer</option>
+                                                <option value="Photographer">Photographer</option>
+                                                <option value="Digital Marketing">Digital Marketing</option>
+                                                <option value="Manufacturer">Manufacturer</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div className="d-flex align-items-center mt-20 mb-20 justify-content-center gap-3">
+                                    <button
+
+
+                                        type="button"
+
+                                        data-bs-dismiss="modal"
+                                        aria-label="Close"
+                                        className="border border-danger-600 bg-hover-danger-200 text-danger-600 text-md px-56 py-11 radius-8"
+                                    >
+                                        Cancel
+                                    </button>
+                                    <button
+                                        type="button"
+                                        className="btn bg-gradient-blue-warning  text-white px-56 py-12 radius-8" onClick={handleSearch}
+                                    >
+                                        Search
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+            {/* Result Modal */}
+            <div className="modal fade" id="searchResultModal" tabIndex={-1} aria-hidden="true">
+                <div className="modal-dialog modal-xl modal-dialog-centered">
+                    <div className="modal-content radius-16 bg-base">
+                        <div className="modal-header py-16 px-24 border border-top-0 border-start-0 border-end-0">
+                            <h1 className="modal-title fs-5" id="memberSearchModal">
+                                Search Results
+                            </h1>
+                            <button
+                                type="button"
+                                className="btn-close"
+                                data-bs-dismiss="modal"
+                                aria-label="Close"
+                            />
+
+
+                        </div>
+                        <div className="modal-body">
+
+                            <div className="d-flex justify-content-between align-items-center mb-3">
+                                <span>
+                                    Showing <strong>1–{results.length}</strong> of {results.length} results
+                                </span>
+                                <div className="d-flex align-items-center gap-2">
+                                    <span>Sort By:</span>
+                                    <select className="form-select form-select-sm" style={{ width: "auto" }}>
+                                        <option value="relevance">Relevance</option>
+                                        <option value="name">Name</option>
+                                        <option value="chapter">Chapter</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div className="table-responsive p-20">
+                                <table className="table align-middle ">
+
+                                    <tbody>
+                                        {results.map((member, idx) => (
+                                            <tr key={idx}>
+                                                {/* Column 1: Avatar */}
+                                                <td>
+                                                    <img
+                                                        src="assets/images/avatar/avatar.jpg"
+                                                        alt="avatar"
+                                                        className="rounded-circle"
+                                                        width="60"
+                                                        height="60"
+                                                    />
+
+                                                </td>
+
+                                                {/* Column 2: Name + Category */}
+                                                <td>
+                                                    <div className="fw-semibold">{member.name}</div>
+
+                                                    {member.category}
+
+                                                </td>
+
+                                                {/* Column 3: Business Info */}
+                                                <td>
+                                                    <div>{member.business}</div>
+                                                    <div className="text-muted small">{member.mobile}</div>
+                                                    <div className="text-muted small">{member.email || 'admin@gmail.com'}</div>
+                                                </td>
+
+                                                {/* Column 4: Chapter Info + Button */}
+                                                <td>
+                                                    <div>{member.chapter}</div>
+                                                    <div className="text-muted small mb-2">{member.zone}</div>
+
+                                                </td>
+
+                                                <td> <div className="align-middle"><button
+  className="btn btn-sm border-grip btn-grip btn-hover-grip text-black"
+  onClick={() => handleViewClick(member)}
+>
+  View
+</button></div></td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+{/* View Member Modal */}
+{showViewModal && selectedMember && (
+  <div
+    className="modal fade show"
+    style={{ display: 'block' }}
+    tabIndex={-1}
+    aria-modal="true"
+    role="dialog"
+  >
+    <div className="modal-dialog modal-xl modal-dialog-centered">
+      <div className="modal-content radius-16 bg-base">
+             <div className="modal-header py-16 px-24 border border-top-0 border-start-0 border-end-0">
+                            <h1 className="modal-title fs-5" id="memberSearchModal">
+                                Member Details
+                            </h1>
+                           <button
+            type="button"
+            className="btn-close"
+            onClick={() => setShowViewModal(false)}
+            aria-label="Close"
+          />
+
+
+                        </div>
+
+        <div className="modal-body">
+
+            <div className='row'>
+                <div className='col-4'>
+                     <img
+                                                        src="assets/images/avatar/avatar.jpg"
+                                                        alt="avatar"
+                                                        className="rounded-circle"
+                                                        width="60"
+                                                        height="60"
+                                                    />
+          <p><strong>Name:</strong> {selectedMember.name}</p>
+          <p><strong>Category:</strong> {selectedMember.category}</p>
+          <p><strong>Business:</strong> {selectedMember.business}</p>
+
+          </div>
+
+           <div className='col-4'>
+
+          <p><strong>Mobile:</strong> {selectedMember.mobile}</p>
+          <p><strong>Email:</strong> {selectedMember.email || 'admin@gmail.com'}</p>
+          <p><strong>Chapter:</strong> {selectedMember.chapter}</p>
+          <p><strong>Zone:</strong> {selectedMember.zone}</p>
+          </div>
+
+
+              <div className='col-4'>
+        <div className='aboutttpara'>
+            <h5>About us</h5>
+            <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web</p>
+        </div>
+          </div>
+            </div>
+
+        </div>
+        <div className="modal-footer">
+          <button
+            type="button"
+            className="btn btn-secondary"
+            onClick={() => setShowViewModal(false)}
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+)}
+
+
+
+
+
+
 
 
             <div
