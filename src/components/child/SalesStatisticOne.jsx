@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 
 import { Icon } from '@iconify/react/dist/iconify.js';
 import ReactApexChart from 'react-apexcharts';
@@ -9,39 +9,81 @@ import { useNavigate } from 'react-router-dom';
 
 
 
-const dummyMembers = [
-    {
-        name: "Deepika Senthil",
-        business: "Ocean Softwares",
-        mobile: "9876543210",
-        chapter: "GRIP Aram",
-        zone: "Chennai",
-        category: "Web Developer",
-    },
-    {
-        name: "Kesavan Dhanbani",
-        business: "Smith Photography",
-        mobile: "9876543210",
-        chapter: "GRIP Madhuram",
-        zone: "Chennai",
-        category: "Photographer",
-    },
-    {
-        name: "Arun Kumar",
-        business: "Kumar Digital",
-        mobile: "9999999999",
-        chapter: "GRIP Kireedam",
-        zone: "Chennai",
-        category: "Digital Marketing",
-    },
-];
 
 const SalesStatisticOne = () => {
 
 
+  const printRef = useRef();
 
-const [selectedMember, setSelectedMember] = useState(null);
-const [showViewModal, setShowViewModal] = useState(false);
+ const handlePrint = () => {
+  const content = document.getElementById('printable-area');
+  const printWindow = window.open('', '', 'height=600,width=800');
+
+  printWindow.document.write(`
+    <html>
+      <head>
+        <title>Print Slips Summary</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" />
+        <style>
+          body { font-family: Arial, sans-serif; padding: 20px; }
+          .radius-8 { border-radius: 8px; }
+          .p-20 { padding: 20px; }
+          .bg-danger-100 { background-color: #ffe6e6; }
+          .text-neutral-700 { color: #4a4a4a; }
+          .text-xl { font-size: 1.5rem; }
+          .text-center { text-align: center; }
+          h6 { margin: 0; font-size: 16px; }
+        </style>
+      </head>
+      <body>
+        ${content.innerHTML}
+        <script>
+          window.onload = function () {
+            window.focus();
+            window.print();
+            setTimeout(() => window.close(), 500); // Give print dialog time to open
+          };
+        </script>
+      </body>
+    </html>
+  `);
+
+  printWindow.document.close();
+};
+
+
+    const dummyMembers = [
+        {
+            name: "Deepika Senthil",
+            business: "Ocean Softwares",
+            mobile: "9876543210",
+            chapter: "GRIP Aram",
+            zone: "Chennai",
+            category: "Web Developer",
+        },
+        {
+            name: "Kesavan Dhanbani",
+            business: "Smith Photography",
+            mobile: "9876543210",
+            chapter: "GRIP Madhuram",
+            zone: "Chennai",
+            category: "Photographer",
+        },
+        {
+            name: "Arun Kumar",
+            business: "Kumar Digital",
+            mobile: "9999999999",
+            chapter: "GRIP Kireedam",
+            zone: "Chennai",
+            category: "Digital Marketing",
+        },
+    ];
+
+
+
+    const [selectedMember, setSelectedMember] = useState(null);
+    const [showViewModal, setShowViewModal] = useState(false);
 
 
 
@@ -49,32 +91,32 @@ const [showViewModal, setShowViewModal] = useState(false);
 
 
     const handleViewClick = (member) => {
-  setSelectedMember(member);
-  setShowViewModal(true);
-};
+        setSelectedMember(member);
+        setShowViewModal(true);
+    };
 
 
 
 
     useEffect(() => {
-  const modalEl = document.getElementById('searchResultModal');
+        const modalEl = document.getElementById('searchResultModal');
 
-  const handleModalHidden = () => {
-    document.body.classList.remove('modal-open');
-    document.body.style.overflow = '';
-    document.body.style.paddingRight = '';
+        const handleModalHidden = () => {
+            document.body.classList.remove('modal-open');
+            document.body.style.overflow = '';
+            document.body.style.paddingRight = '';
 
-    // Remove any lingering backdrops
-    const backdrop = document.querySelector('.modal-backdrop');
-    if (backdrop) backdrop.remove();
-  };
+            // Remove any lingering backdrops
+            const backdrop = document.querySelector('.modal-backdrop');
+            if (backdrop) backdrop.remove();
+        };
 
-  modalEl?.addEventListener('hidden.bs.modal', handleModalHidden);
+        modalEl?.addEventListener('hidden.bs.modal', handleModalHidden);
 
-  return () => {
-    modalEl?.removeEventListener('hidden.bs.modal', handleModalHidden);
-  };
-}, []);
+        return () => {
+            modalEl?.removeEventListener('hidden.bs.modal', handleModalHidden);
+        };
+    }, []);
 
 
 
@@ -200,20 +242,20 @@ const [showViewModal, setShowViewModal] = useState(false);
                             />
                         </form>
 
-                        <Link
-                            to=""
+                        <button
+                            onClick={handlePrint}
                             className="btn text-white bg-gradient-blue-warning text-sm btn-sm d-flex align-items-center justify-content-center gap-2 text-center"
                             style={{
                                 width: '200px',
                                 height: '50px',
                                 borderRadius: '8px',
                                 padding: '12px',
-                                whiteSpace: 'normal', // allows wrapping
+                                whiteSpace: 'normal',
                                 lineHeight: '1.2',
                             }}
                         >
                             Print Your Slips
-                        </Link>
+                        </button>
 
                         <Link
                             to=""
@@ -290,7 +332,7 @@ const [showViewModal, setShowViewModal] = useState(false);
 
 
                             {/* Right side details */}
-                            <div className="col-9">
+                            <div className="col-9" id="printable-area">
 
                                 <div className='row g-3'>
 
@@ -1209,11 +1251,11 @@ const [showViewModal, setShowViewModal] = useState(false);
                                                 </td>
 
                                                 <td> <div className="align-middle"><button
-  className="btn btn-sm border-grip btn-grip btn-hover-grip text-black"
-  onClick={() => handleViewClick(member)}
->
-  View
-</button></div></td>
+                                                    className="btn btn-sm border-grip btn-grip btn-hover-grip text-black"
+                                                    onClick={() => handleViewClick(member)}
+                                                >
+                                                    View
+                                                </button></div></td>
                                             </tr>
                                         ))}
                                     </tbody>
@@ -1229,79 +1271,79 @@ const [showViewModal, setShowViewModal] = useState(false);
 
 
 
-{/* View Member Modal */}
-{showViewModal && selectedMember && (
-  <div
-    className="modal fade show"
-    style={{ display: 'block' }}
-    tabIndex={-1}
-    aria-modal="true"
-    role="dialog"
-  >
-    <div className="modal-dialog modal-xl modal-dialog-centered">
-      <div className="modal-content radius-16 bg-base">
-             <div className="modal-header py-16 px-24 border border-top-0 border-start-0 border-end-0">
-                            <h1 className="modal-title fs-5" id="memberSearchModal">
-                                Member Details
-                            </h1>
-                           <button
-            type="button"
-            className="btn-close"
-            onClick={() => setShowViewModal(false)}
-            aria-label="Close"
-          />
+            {/* View Member Modal */}
+            {showViewModal && selectedMember && (
+                <div
+                    className="modal fade show"
+                    style={{ display: 'block' }}
+                    tabIndex={-1}
+                    aria-modal="true"
+                    role="dialog"
+                >
+                    <div className="modal-dialog modal-xl modal-dialog-centered">
+                        <div className="modal-content radius-16 bg-base">
+                            <div className="modal-header py-16 px-24 border border-top-0 border-start-0 border-end-0">
+                                <h1 className="modal-title fs-5" id="memberSearchModal">
+                                    Member Details
+                                </h1>
+                                <button
+                                    type="button"
+                                    className="btn-close"
+                                    onClick={() => setShowViewModal(false)}
+                                    aria-label="Close"
+                                />
 
 
+                            </div>
+
+                            <div className="modal-body">
+
+                                <div className='row'>
+                                    <div className='col-4'>
+                                        <img
+                                            src="assets/images/avatar/avatar.jpg"
+                                            alt="avatar"
+                                            className="rounded-circle"
+                                            width="60"
+                                            height="60"
+                                        />
+                                        <p><strong>Name:</strong> {selectedMember.name}</p>
+                                        <p><strong>Category:</strong> {selectedMember.category}</p>
+                                        <p><strong>Business:</strong> {selectedMember.business}</p>
+
+                                    </div>
+
+                                    <div className='col-4'>
+
+                                        <p><strong>Mobile:</strong> {selectedMember.mobile}</p>
+                                        <p><strong>Email:</strong> {selectedMember.email || 'admin@gmail.com'}</p>
+                                        <p><strong>Chapter:</strong> {selectedMember.chapter}</p>
+                                        <p><strong>Zone:</strong> {selectedMember.zone}</p>
+                                    </div>
+
+
+                                    <div className='col-4'>
+                                        <div className='aboutttpara'>
+                                            <h5>About us</h5>
+                                            <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div className="modal-footer">
+                                <button
+                                    type="button"
+                                    className="btn btn-secondary"
+                                    onClick={() => setShowViewModal(false)}
+                                >
+                                    Close
+                                </button>
+                            </div>
                         </div>
-
-        <div className="modal-body">
-
-            <div className='row'>
-                <div className='col-4'>
-                     <img
-                                                        src="assets/images/avatar/avatar.jpg"
-                                                        alt="avatar"
-                                                        className="rounded-circle"
-                                                        width="60"
-                                                        height="60"
-                                                    />
-          <p><strong>Name:</strong> {selectedMember.name}</p>
-          <p><strong>Category:</strong> {selectedMember.category}</p>
-          <p><strong>Business:</strong> {selectedMember.business}</p>
-
-          </div>
-
-           <div className='col-4'>
-
-          <p><strong>Mobile:</strong> {selectedMember.mobile}</p>
-          <p><strong>Email:</strong> {selectedMember.email || 'admin@gmail.com'}</p>
-          <p><strong>Chapter:</strong> {selectedMember.chapter}</p>
-          <p><strong>Zone:</strong> {selectedMember.zone}</p>
-          </div>
-
-
-              <div className='col-4'>
-        <div className='aboutttpara'>
-            <h5>About us</h5>
-            <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web</p>
-        </div>
-          </div>
-            </div>
-
-        </div>
-        <div className="modal-footer">
-          <button
-            type="button"
-            className="btn btn-secondary"
-            onClick={() => setShowViewModal(false)}
-          >
-            Close
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-)}
+                    </div>
+                </div>
+            )}
 
 
 

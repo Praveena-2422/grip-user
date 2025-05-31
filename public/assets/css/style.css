@@ -15888,3 +15888,14 @@ thead.table-danger.grip {
   font-size: 20px;
   cursor: pointer;
 }
+
+
+@media print {
+    .no-print {
+        display: none !important;
+    }
+    .print-full-width {
+        width: 100% !important;
+    }
+    /* Add other print-specific styles as needed */
+}
